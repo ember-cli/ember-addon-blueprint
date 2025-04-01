@@ -3,7 +3,8 @@
   "version": "0.2.0",
   "description": "Blueprint for scaffolding ember v2 addons",
   "keywords": [
-    "ember-blueprint"
+    "ember-blueprint",
+    "ember-addon"
   ],
   "repository": {
     "type": "git",
@@ -12,9 +13,14 @@
   "license": "MIT",
   "author": "",
   "scripts": {},
-  "dependencies": {},
+  "dependencies": {
+    "ember-cli-string-utils": "^1.1.0"
+  },
   "devDependencies": {
     "release-plan": "^0.16.0"
   },
-  "packageManager": "pnpm@10.6.5"
+  "packageManager": "pnpm@10.6.5",
+  "blueprints": {
+    "component": "./blueprints/component"
+  }
 }

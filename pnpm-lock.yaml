@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      ember-cli-string-utils:
+        specifier: ^1.1.0
+        version: 1.1.0
     devDependencies:
       release-plan:
         specifier: ^0.16.0
@@ -261,6 +265,9 @@ packages:
 
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
+
+  ember-cli-string-utils@1.1.0:
+    resolution: {integrity: sha512-PlJt4fUDyBrC/0X+4cOpaGCiMawaaB//qD85AXmDRikxhxVzfVdpuoec02HSiTGTTB85qCIzWBIh8lDOiMyyFg==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -1193,6 +1200,8 @@ snapshots:
   deep-extend@0.6.0: {}
 
   eastasianwidth@0.2.0: {}
+
+  ember-cli-string-utils@1.1.0: {}
 
   emoji-regex@8.0.0: {}
 
