@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      ember-cli-string-utils:
+        specifier: ^1.1.0
+        version: 1.1.0
       sort-package-json:
         specifier: ^3.4.0
         version: 3.4.0
