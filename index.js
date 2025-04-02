@@ -5,6 +5,7 @@ let date = new Date();
 const description = 'The default blueprint for Embroider v2 addons.';
 
 module.exports = {
+  name: "face",
   description,
 
   fileMapTokens(options) {

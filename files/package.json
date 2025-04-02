@@ -36,14 +36,16 @@
     "ember-source": ">= 4.12.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.2",<% if (typescript) { %>"@babel/plugin-transform-typescript": "^7.25.2",<% } %>
+    "@babel/core": "^7.25.2",<% if (typescript) { %>
+    "@babel/plugin-transform-typescript": "^7.25.2",<% } %>
     "@babel/eslint-parser": "^7.25.1",
     "@babel/runtime": "^7.25.6",
+    "@ember/addon-blueprint": "github:ember-cli/ember-addon-blueprint#blueprints",
+    "@ember/test-helpers": "^5.2.1",
     "@embroider/addon-dev": "^7.1.0",
     "@embroider/core": "^4.0.0-alpha.10",
     "@embroider/macros": "^1.17.0-alpha.8",
     "@embroider/vite": "^1.0.0-alpha.12",
-    "@ember/test-helpers": "^5.2.1",
     "@eslint/js": "^9.17.0",<% if (typescript) { %>
     "@glint/core": "^1.4.0",
     "@glint/environment-ember-loose": "^1.4.0",
@@ -53,21 +55,22 @@
     "@rollup/plugin-babel": "^6.0.4",
     "babel-plugin-ember-template-compilation": "^2.2.5",
     "concurrently": "^9.0.1",
-    "ember-source": "^6.3.0",
-    "ember-resolver": "^13.1.0",
-    "ember-template-lint": "^6.0.0",
     "ember-qunit": "^9.0.2",
+    "ember-resolver": "^13.1.0",
+    "ember-source": "^6.3.0",
+    "ember-template-lint": "^6.0.0",
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-ember": "^12.3.3",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-n": "^17.15.1",
     "globals": "^15.14.0",
+    "layer-gen": "^0.1.0",
     "prettier": "^3.4.2",
     "prettier-plugin-ember-template-tag": "^2.0.4",
-    "rollup": "^4.22.5",
     "qunit": "^2.24.1",
     "qunit-dom": "^3.4.0",
+    "rollup": "^4.22.5",
     "vite": "^6.2.4"<% if (typescript) { %>,
     "typescript-eslint": "^8.19.1",
     "typescript": "~5.6.0"<% } %>
