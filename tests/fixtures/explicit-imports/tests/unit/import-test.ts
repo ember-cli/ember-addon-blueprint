@@ -1,7 +1,10 @@
 import { module, test } from 'qunit';
 import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
-import { hbs } from 'ember-cli-htmlbars';
+
+import JSComponent from 'my-addon/components/js-component';
+import TSComponent from 'my-addon/components/ts-component';
+import TemplateOnly from 'my-addon/components/template-only';
 
 import * as myModule from 'my-addon';
 
