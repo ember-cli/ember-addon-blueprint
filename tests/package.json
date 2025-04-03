@@ -1,0 +1,20 @@
+{
+  "name": "blueprint-tests",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#helpers": "./helpers/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@tsconfig/node-lts": "^22.0.1",
+    "@tsconfig/strictest": "^2.0.5",
+    "typescript": "^5.8.2",
+    "vitest": "^3.1.1"
+  },
+  "engines": {
+    "node": ">= 20"
+  }
+}
