@@ -1,3 +1,6 @@
 {
   "extends": ["@tsconfig/strictist", "@tsconfig/node-lts"]
+  "compilerOptions": {
+    "types": ["@types/node"]
+  }
 }
