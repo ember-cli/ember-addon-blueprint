@@ -31,10 +31,6 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       let yarn = path.join(helper.projectRoot, 'yarn.lock');
       let pnpm = path.join(helper.projectRoot, 'pnpm-lock.yaml');
 
-      let testManifest = await fse.readJson(
-        path.join(helper.projectRoot, 'test-app', 'package.json'),
-      );
-
       switch (packageManager) {
         case 'npm': {
           expect(await fse.pathExists(npm), 'for NPM: package-lock.json exists').toBe(true);
@@ -44,8 +40,6 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
           await matchesFixture('.github/workflows/ci.yml', { cwd: helper.projectRoot });
           await matchesFixture('.github/workflows/push-dist.yml', { cwd: helper.projectRoot });
           await matchesFixture('CONTRIBUTING.md', { cwd: helper.projectRoot });
-
-          expect(testManifest.devDependencies['my-addon']).toBe('^0.0.0');
 
           break;
         }
@@ -113,8 +107,7 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
 
     it('build and test ', async () => {
       // Copy over fixtures
-      await helper.fixtures.use('./my-addon/src/components');
-      await helper.fixtures.use('./test-app/tests');
+      await helper.fixtures.use('./');
 
       // Ensure that we have no lint errors.
       // It's important to keep this along with the tests,
