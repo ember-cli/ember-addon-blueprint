@@ -87,7 +87,7 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       }
     });
 
-    it('"prepare" built the addon', async () => {
+    it('[Self Test] beforeAll built the addon', async () => {
       let contents = await dirContents(distDir);
 
       expect(contents).to.deep.equal(['index.js', 'index.js.map']);
