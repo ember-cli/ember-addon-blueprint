@@ -13,6 +13,7 @@
     "@tsconfig/strictest": "^2.0.5",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.14.0",
+    "ember-cli": "^6.3.0",
     "execa": "^9.5.2",
     "fs-extra": "^11.3.0",
     "typescript": "^5.8.2",

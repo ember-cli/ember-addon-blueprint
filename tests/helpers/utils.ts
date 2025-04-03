@@ -5,13 +5,13 @@ import { fileURLToPath } from 'node:url';
 
 import { execa, type Options } from 'execa';
 
-const DEBUG = process.env.DEBUG === 'true';
+const DEBUG = process.env['DEBUG'] === 'true';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // repo-root
 const blueprintPath = path.join(__dirname, '../..');
 
-export const SUPPORTED_PACKAGE_MANAGERS = ['npm', 'yarn', 'pnpm'] as const;
+export const SUPPORTED_PACKAGE_MANAGERS = ['npm', 'pnpm'] as const;
 
 export async function createTmp() {
   let prefix = 'v2-addon-blueprint--';

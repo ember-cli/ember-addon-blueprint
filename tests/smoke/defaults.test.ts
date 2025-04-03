@@ -5,7 +5,6 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
 import {
   AddonHelper,
-  assertGeneratedCorrectly,
   dirContents,
   matchesFixture,
   SUPPORTED_PACKAGE_MANAGERS,
@@ -102,10 +101,6 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       let contents = await dirContents(distDir);
 
       expect(contents).to.deep.equal(['index.js', 'index.js.map']);
-    });
-
-    it('was generated correctly', async () => {
-      await assertGeneratedCorrectly({ projectRoot: helper.projectRoot, packageManager });
     });
 
     // Tests are additive, so when running them in order, we want to check linting

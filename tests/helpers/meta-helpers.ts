@@ -6,7 +6,7 @@ import { matchesFixture } from './assertions.js';
 import { copyFixture } from './fixtures.js';
 import { createAddon, createTmp, install, runScript } from './utils.js';
 
-const DEBUG = process.env.DEBUG === 'true';
+const DEBUG = process.env['DEBUG'] === 'true';
 
 /**
  * Helps with common addon testing concerns.
