@@ -11,6 +11,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // repo-root
 const blueprintPath = path.join(__dirname, '../..');
 
+// yarn?
 export const SUPPORTED_PACKAGE_MANAGERS = ['npm', 'pnpm'] as const;
 
 export async function createTmp() {
