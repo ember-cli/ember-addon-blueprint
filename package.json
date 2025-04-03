@@ -11,7 +11,9 @@
   },
   "license": "MIT",
   "author": "",
-  "scripts": {},
+  "scripts": {
+    "test": "pnpm --filter 'blueprint-tests' run test"
+  },
   "dependencies": {},
   "devDependencies": {
     "release-plan": "^0.16.0"
