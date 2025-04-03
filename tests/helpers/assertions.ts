@@ -8,76 +8,6 @@ import { expect } from 'vitest';
 import { readFixture } from './fixtures.js';
 import { packageJsonAt } from './utils.js';
 
-interface AssertGeneratedOptions {
-  projectRoot: string;
-  addonLocation?: string;
-  addonName?: string;
-  testAppLocation?: string;
-  testAppName?: string;
-  expectedStaticFiles?: string[];
-  packageManager?: 'npm' | 'yarn' | 'pnpm';
-  typeScript?: boolean;
-  existingMonorepo?: boolean;
-}
-
-/**
- * Asserts that the names / paths of the test-app and addon
- * exist and are corrected via dependencies.
- */
-export async function assertGeneratedCorrectly({
-  projectRoot,
-  addonLocation,
-  addonName = 'my-addon',
-  testAppLocation,
-  testAppName,
-  expectedStaticFiles = ['README.md', 'LICENSE.md'],
-  packageManager = 'npm',
-  typeScript = false,
-  existingMonorepo = false,
-}: AssertGeneratedOptions) {
-  let addonPath = path.join(projectRoot, addonLocation ?? 'my-addon');
-  let testAppPath = path.join(projectRoot, testAppLocation ?? 'test-app');
-
-  expect(await fse.pathExists(addonPath), `${addonPath} exists`).toBe(true);
-  expect(await fse.pathExists(testAppPath), `${testAppPath} exists`).toBe(true);
-
-  let addonPackageJson = await packageJsonAt(addonPath);
-  let testAppPackageJson = await packageJsonAt(testAppPath);
-
-  expect(addonPackageJson.name, `addon has correct name: ${addonName}`).toEqual(addonName);
-  expect(testAppPackageJson.name, `testApp has correct name: ${testAppName ?? 'test-app'}`).toEqual(
-    testAppName ?? 'test-app',
-  );
-
-  expect(
-    [
-      ...Object.keys(testAppPackageJson.dependencies || {}),
-      ...Object.keys(testAppPackageJson.devDependencies || {}),
-    ],
-    `The test app has a (dev)dependency on the addon`,
-  ).to.include(addonName);
-
-  for (let expectedFile of expectedStaticFiles) {
-    let pathToFile = path.join(addonPath, expectedFile);
-
-    expect(await fse.pathExists(pathToFile), `${pathToFile} exists`).toBe(true);
-  }
-
-  if (!existingMonorepo) {
-    await matchesFixture('.prettierrc.cjs', { cwd: projectRoot });
-
-    await assertCorrectECUJson({
-      projectRoot,
-      addonName,
-      addonLocation,
-      testAppLocation,
-      testAppName,
-      packageManager,
-      typeScript,
-    });
-  }
-}
-
 interface AssertECUOptions {
   projectRoot: string;
   addonName: string;
@@ -91,9 +21,6 @@ interface AssertECUOptions {
 export async function assertCorrectECUJson({
   projectRoot,
   addonName,
-  addonLocation,
-  testAppLocation,
-  testAppName,
   packageManager,
   typeScript,
 }: AssertECUOptions) {
@@ -105,11 +32,11 @@ export async function assertCorrectECUJson({
   expect(json.projectName).toEqual(addonName);
   expect(json.packages).toHaveLength(1);
 
-  expect(json.packages[0].name).toEqual('@embroider/addon-blueprint');
+  expect(json.packages[0].name).toEqual('@ember/addon-blueprint');
   expect(json.packages[0].version).toEqual(ownPkg.version);
 
   expect(json.packages[0].blueprints).toHaveLength(1);
-  expect(json.packages[0].blueprints[0].name).toEqual('@embroider/addon-blueprint');
+  expect(json.packages[0].blueprints[0].name).toEqual('@ember/addon-blueprint');
 
   if (packageManager !== 'npm') {
     expect(json.packages[0].blueprints[0].options).toContain(`--${packageManager}`);
@@ -119,30 +46,6 @@ export async function assertCorrectECUJson({
     expect(json.packages[0].blueprints[0].options).toContain(`--typescript`);
   } else {
     expect(json.packages[0].blueprints[0].options).not.toContain(`--typescript`);
-  }
-
-  if (addonLocation) {
-    expect(json.packages[0].blueprints[0].options).toContain(`--addon-location=${addonLocation}`);
-  } else {
-    expect(json.packages[0].blueprints[0].options).not.toContain(
-      `--addon-location=${addonLocation}`,
-    );
-  }
-
-  if (testAppLocation) {
-    expect(json.packages[0].blueprints[0].options).toContain(
-      `--test-app-location=${testAppLocation}`,
-    );
-  } else {
-    expect(json.packages[0].blueprints[0].options).not.toContain(
-      `--test-app-location=${testAppLocation}`,
-    );
-  }
-
-  if (testAppName) {
-    expect(json.packages[0].blueprints[0].options).toContain(`--test-app-name=${testAppName}`);
-  } else {
-    expect(json.packages[0].blueprints[0].options).not.toContain(`--test-app-name=${testAppName}`);
   }
 }
 
