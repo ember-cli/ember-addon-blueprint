@@ -64,8 +64,7 @@ export class AddonHelper {
     });
 
     // this is the project root
-    this.#projectRoot = path.join(this.#tmpDir, name);
-    this.#addonFolder = path.join(this.#projectRoot, name);
+    this.#projectRoot = this.#addonFolder = path.join(this.#tmpDir, name);
 
     this.#fixtures = new AddonFixtureHelper({ cwd: this.#projectRoot, scenario: this.#scenario });
   }
