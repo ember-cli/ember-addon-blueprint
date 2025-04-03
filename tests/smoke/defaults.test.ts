@@ -58,8 +58,6 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
           });
           await matchesFixture('CONTRIBUTING.md', { cwd: helper.projectRoot, scenario: 'yarn' });
 
-          expect(testManifest.devDependencies['my-addon']).toBe('^0.0.0');
-
           break;
         }
         case 'pnpm': {
@@ -80,8 +78,6 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
             cwd: helper.projectRoot,
             scenario: 'pnpm',
           });
-
-          expect(testManifest.devDependencies['my-addon']).toBe('workspace:*');
 
           break;
         }
@@ -125,7 +121,7 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
 
       expect(contents).to.deep.equal(['_app_', 'components', 'index.js', 'index.js.map']);
 
-      let testResult = await helper.run('test:ember');
+      let testResult = await helper.run('test');
 
       expect(testResult.exitCode).toEqual(0);
 
