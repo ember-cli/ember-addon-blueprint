@@ -11,6 +11,7 @@
   "devDependencies": {
     "@tsconfig/node-lts": "^22.0.1",
     "@tsconfig/strictest": "^2.0.5",
+    "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.14.0",
     "execa": "^9.5.2",
     "fs-extra": "^11.3.0",
