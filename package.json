@@ -12,6 +12,7 @@
   "license": "MIT",
   "author": "",
   "scripts": {
+    "lint": "echo 'This needs to be set up'",
     "test": "pnpm --filter 'blueprint-tests' run test"
   },
   "dependencies": {},
