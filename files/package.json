@@ -25,7 +25,8 @@
     "lint:js:fix": "eslint . --fix",<% if (typescript) { %>
     "lint:types": "glint",<% } %>
     "start": "vite dev",
-    "test": "vite build --mode=development && testem --file ./tests/testem.cjs ci --port 0",
+    "start:launch": "vite dev --open /tests/",
+    "test": "vite build --mode=development && testem ci --port 0 --file ./testem.cjs ",
     "prepack": "rollup --config"
   },
   "dependencies": {

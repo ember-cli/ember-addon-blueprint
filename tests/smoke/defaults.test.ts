@@ -24,7 +24,7 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS.filter(x => x !== 'yarn'))
     });
 
     afterAll(async () => {
-      // await helper.clean();
+      await helper.clean();
     });
 
     it('is using the correct packager', async () => {
@@ -114,7 +114,7 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS.filter(x => x !== 'yarn'))
        expect(exitCode).toEqual(0);
     });
 
-    it('build and test ', async () => {
+    it('build and test', async () => {
       await helper.fixtures.use('./');
 
       let buildResult = await helper.build();

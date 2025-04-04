@@ -5,8 +5,12 @@ import { fileURLToPath } from 'node:url';
 
 import { execa, type Options } from 'execa';
 
-const DEBUG = process.env['DEBUG'] === 'true';
+const DEBUG = true; // process.env['DEBUG'] === 'true';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const extraOptions = DEBUG ? {
+  stdio: 'inherit'
+} : {};
 
 // repo-root
 const blueprintPath = path.join(__dirname, '../..');
@@ -43,7 +47,7 @@ export async function install({
       installOptions.push('--no-frozen-lockfile');
     }
 
-    await execa(packageManager, ['install', '--ignore-scripts', ...installOptions], { cwd });
+    await execa(packageManager, ['install', '--ignore-scripts', ...installOptions], { cwd, ...extraOptions });
   }
 
   const pkg = await packageJsonAt(cwd);
@@ -68,7 +72,7 @@ export async function runScript({
   packageManager: string;
 }) {
   // all package managers allow a more verbose <packageManager> run <script> way of running scripts
-  let promise = execa(packageManager, ['run', script], { cwd });
+  let promise = execa(packageManager, ['run', script], { cwd, ...extraOptions });
 
   try {
     await promise;
@@ -121,6 +125,7 @@ export async function createAddon({
   let result = await execa(localEmberCli, emberCliArgs, {
     ...options,
     preferLocal: true,
+    ...extraOptions,
   });
 
   return { result, name };
