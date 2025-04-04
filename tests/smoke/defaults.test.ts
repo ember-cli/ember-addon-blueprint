@@ -102,17 +102,20 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS.filter(x => x !== 'yarn'))
       expect(exitCode).toEqual(0);
     });
 
+    it('lint:fix does not error, and causes no changes', async () => {
+       await helper.fixtures.use('./');
+
+       // Ensure that we have no lint errors.
+       // It's important to keep this along with the tests,
+       // so that we can have confidence that the lints aren't destructively changing
+       // the files in a way that would break consumers
+       let { exitCode } = await helper.run('lint:fix');
+       
+       expect(exitCode).toEqual(0);
+    });
+
     it('build and test ', async () => {
-      // Copy over fixtures
       await helper.fixtures.use('./');
-
-      // Ensure that we have no lint errors.
-      // It's important to keep this along with the tests,
-      // so that we can have confidence that the lints aren't destructively changing
-      // the files in a way that would break consumers
-      let { exitCode } = await helper.run('lint:fix');
-
-      expect(exitCode).toEqual(0);
 
       let buildResult = await helper.build();
 
