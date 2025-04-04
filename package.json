@@ -11,7 +11,10 @@
   },
   "license": "MIT",
   "author": "",
-  "scripts": {},
+  "scripts": {
+    "lint": "echo 'This needs to be set up'",
+    "test": "pnpm --filter 'blueprint-tests' run test"
+  },
   "dependencies": {},
   "devDependencies": {
     "release-plan": "^0.16.0"

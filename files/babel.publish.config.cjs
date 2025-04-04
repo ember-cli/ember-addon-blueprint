@@ -12,7 +12,7 @@ module.exports = {
       'babel-plugin-ember-template-compilation',
       {
         targetFormat: 'hbs',
-        transforms: []
+        transforms: [],
       },
     ],
     [

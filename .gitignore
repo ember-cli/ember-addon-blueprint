@@ -1,1 +1,5 @@
-/node_modules/
+# JS
+node_modules/
+
+# Misc
+.log/
