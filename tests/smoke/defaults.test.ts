@@ -17,13 +17,14 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
 
     beforeAll(async () => {
       await helper.setup();
-      await helper.installDeps({ skipPrepare: false });
+      await helper.installDeps();
+      await helper.build();
 
       distDir = path.join(helper.addonFolder, 'dist');
     });
 
     afterAll(async () => {
-      await helper.clean();
+      // await helper.clean();
     });
 
     it('is using the correct packager', async () => {
