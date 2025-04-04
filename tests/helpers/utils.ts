@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 import { execa, type Options } from 'execa';
 
-const DEBUG = true; // process.env['DEBUG'] === 'true';
+const DEBUG = process.env['DEBUG'] === 'true';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const extraOptions = DEBUG ? {
