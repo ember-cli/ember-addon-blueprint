@@ -2,10 +2,6 @@ import { module, test } from 'qunit';
 import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 
-import JSComponent from 'my-addon/components/js-component';
-import TSComponent from 'my-addon/components/ts-component';
-import TemplateOnly from 'my-addon/components/template-only';
-
 import * as myModule from 'my-addon';
 
 module('imports', function () {
@@ -20,25 +16,19 @@ module('imports', function () {
     setupRenderingTest(hooks);
 
     test('JSComponent can render', async function (assert) {
-      this.setProperties({ JSComponent: myModule.JSComponent });
-
-      await render(hbs`<this.JSComponent />`);
+      await render(<template><myModule.JSComponent /></template>);
 
       assert.dom().hasText('nested: JS');
     });
 
     test('TSComponent can render', async function (assert) {
-      this.setProperties({ TSComponent: myModule.TSComponent });
-
-      await render(hbs`<this.TSComponent />`);
+      await render(<template><myModule.TSComponent /></template>);
 
       assert.dom().hasText('nested: TS');
     });
 
     test('TemplateOnly can render', async function (assert) {
-      this.setProperties({ TemplateOnly: myModule.TemplateOnly });
-
-      await render(hbs`<this.TemplateOnly />`);
+      await render(<template><myModule.TemplateOnly /></template>);
 
       assert.dom().hasText('this is a template-only component');
     });
