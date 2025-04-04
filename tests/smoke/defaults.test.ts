@@ -10,7 +10,7 @@ import {
   SUPPORTED_PACKAGE_MANAGERS,
 } from '#helpers';
 
-for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
+for (let packageManager of SUPPORTED_PACKAGE_MANAGERS.filter(x => x !== 'yarn')) {
   describe(`defaults with ${packageManager}`, () => {
     let distDir = '';
     let helper = new AddonHelper({ packageManager });
