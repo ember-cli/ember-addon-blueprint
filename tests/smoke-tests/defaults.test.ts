@@ -129,5 +129,25 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       
       
     });
+
+    it('build and test with co-located components', async () => {
+      let addonFixture = fixturify.readSync('./fixtures/legacy-components');
+      fixturify.writeSync(join(addonDir, 'src'), addonFixture);
+
+      let testFixture = fixturify.readSync('./fixtures/legacy-rendering-tests');
+      fixturify.writeSync(join(addonDir, 'tests/rendering'), testFixture);
+
+      await execa({cwd: addonDir})`${packageManager} run build`;
+      let testResult = await await execa({cwd: addonDir})`${packageManager} run test`;
+
+      expect(testResult.exitCode).toEqual(0);
+      expect(testResult.stdout).includes(`# tests 4
+# pass  4
+# skip  0
+# todo  0
+# fail  0
+
+# ok`, testResult.stdout);
+    });
   });
 }
