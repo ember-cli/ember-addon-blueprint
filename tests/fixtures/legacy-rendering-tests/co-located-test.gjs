@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import CoLocated from "addon-name/components/co-located";
+import CoLocated from "my-addon/components/co-located";
 
 module('Rendering | co-located', function(hooks) {
   setupRenderingTest(hooks);
