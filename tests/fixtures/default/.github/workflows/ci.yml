@@ -12,8 +12,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
-    name: "Tests"
+  lint:
+    name: "Lints"
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -27,6 +27,20 @@ jobs:
         run: npm ci
       - name: Lint
         run: npm run lint
+
+  test:
+    name: "Tests"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+      - name: Install Dependencies
+        run: npm ci
       - name: Run Tests
         run: npm run test
 
