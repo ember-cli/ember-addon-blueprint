@@ -2,8 +2,8 @@
   "solution": {
     "@ember/addon-blueprint": {
       "impact": "patch",
-      "oldVersion": "0.1.0",
-      "newVersion": "0.1.1",
+      "oldVersion": "0.5.0",
+      "newVersion": "0.5.1",
       "tagName": "latest",
       "constraints": [
         {
@@ -14,5 +14,5 @@
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-03-27)\n\n* @ember/addon-blueprint 0.1.1 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#4](https://github.com/ember-cli/ember-addon-blueprint/pull/4) fix release-plan use with pnpm ([@mansona](https://github.com/mansona))\n\n#### Committers: 1\n- Chris Manson ([@mansona](https://github.com/mansona))\n"
+  "description": "## Release (2025-05-10)\n\n* @ember/addon-blueprint 0.5.1 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#35](https://github.com/ember-cli/ember-addon-blueprint/pull/35) Remove ember-source as a peer dependency ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }

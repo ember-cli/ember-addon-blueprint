@@ -46,6 +46,10 @@ module.exports = {
   files(options) {
     let files = this._super.files.apply(this, arguments);
 
+    if (options.ciProvider !== 'github') {
+      files = files.filter((file) => file.indexOf('.github') < 0);
+    }
+    
     if (!options.typescript) {
       let ignoredFiles = ['tsconfig.json'];
 

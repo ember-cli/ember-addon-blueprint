@@ -27,9 +27,9 @@ const esmParserOptions = {
 };
 <% if (typescript) { %>
 const tsParserOptions = {
-    projectService: true,
-    project: true,
-    tsconfigRootDir: import.meta.dirname,
+  projectService: true,
+  project: true,
+  tsconfigRootDir: import.meta.dirname,
 };
 <% } %>
 const config = [
@@ -92,9 +92,8 @@ const config = [
   {
     files: [
       '**/*.cjs',
-      '.prettierrc.js',
-      '.stylelintrc.js',
-      '.template-lintrc.js',
+      '.prettierrc.cjs',
+      '.template-lintrc.cjs',
       'addon-main.cjs',
     ],
     plugins: {

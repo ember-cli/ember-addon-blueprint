@@ -28,7 +28,7 @@ Sets up the new addon with [`pnpm`](https://pnpm.io/) as a default package manag
 Example:
 
 ```bash
-npx ember-cli@latest addon my-addon -b @embroider/addon-blueprint --pnpm
+npx ember-cli@latest addon my-addon -b @ember/addon-blueprint --pnpm
 cd my-addon
 ```
 
@@ -39,7 +39,7 @@ Sets up the new addon with `npm` as a default.
 Example:
 
 ```bash
-npx ember-cli@latest addon my-addon -b @embroider/addon-blueprint --npm
+npx ember-cli@latest addon my-addon -b @ember/addon-blueprint --npm
 cd my-addon
 ```
 
@@ -50,7 +50,7 @@ Sets up the new addon with [`typescript`](https://www.typescriptlang.org/) suppo
 Example:
 
 ```bash
-npx ember-cli@latest addon my-addon -b @embroider/addon-blueprint --typescript
+npx ember-cli@latest addon my-addon -b @ember/addon-blueprint --typescript
 ```
 
 ### Updating the addon
