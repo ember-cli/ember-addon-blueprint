@@ -50,8 +50,8 @@ jobs:
       # For the Try Scenarios
       - id: set-matrix
         run: |
-          <%= if (pnpm) { %> echo "matrix=$(pnpm -s dlx @embroider/try list)" >> $GITHUB_OUTPUT<% } %>
-          <%= if (npm) { %> echo "matrix=$(npx @embroider/try list)" >> $GITHUB_OUTPUT<% } %>
+          <% if (pnpm) { %> echo "matrix=$(pnpm -s dlx @embroider/try list)" >> $GITHUB_OUTPUT<% } %>
+          <% if (npm) { %> echo "matrix=$(npx @embroider/try list)" >> $GITHUB_OUTPUT<% } %>
 
   floating:
     name: "Floating Dependencies"
