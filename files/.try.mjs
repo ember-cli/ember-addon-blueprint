@@ -6,7 +6,6 @@ function scenarios() {
       compatEmberScenario('ember-lts-4.12', '^4.12.0'),
       compatEmberScenario('ember-lts-5.4', '~5.4.0'),
       compatEmberScenario('ember-lts-5.12', '^5.12.0'),
-      compatEmberScenario('ember-lts-6.4', '~6.4.0'),
       emberScenario('~6.4.0'),
       emberScenario('latest'),
       emberScenario('beta'),
