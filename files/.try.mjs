@@ -7,14 +7,15 @@ function scenarios() {
       compatEmberScenario('ember-lts-5.4', '~5.4.0'),
       compatEmberScenario('ember-lts-5.12', '^5.12.0'),
       compatEmberScenario('ember-lts-6.4', '~6.4.0'),
-      latestEmberScenario('latest'),
-      latestEmberScenario('beta'),
-      latestEmberScenario('alpha'),
+      emberScenario('~6.4.0'),
+      emberScenario('latest'),
+      emberScenario('beta'),
+      emberScenario('alpha'),
     ],
   };
 }
 
-function latestEmberScenario(tag) {
+function emberScenario(tag) {
   return {
     name: `ember-${tag}`,
     npm: {
