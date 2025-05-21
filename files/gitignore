@@ -12,7 +12,5 @@ ember-cli-build.js
 
 # deps & caches
 node_modules/
-.log/
-tests/.log/
 .eslintcache
 .prettiercache

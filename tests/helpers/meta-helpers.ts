@@ -29,7 +29,13 @@ export class AddonHelper {
   #fixtures: AddonFixtureHelper | undefined;
 
   constructor(options: {
+    /**
+     * Args passed to ember-cli
+     */
     args?: string[];
+    /**
+     * The fixture scenario to use
+     */
     scenario?: string;
     packageManager: 'pnpm' | 'npm';
   }) {
