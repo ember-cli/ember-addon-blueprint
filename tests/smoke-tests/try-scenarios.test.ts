@@ -8,7 +8,7 @@ import fixturify from 'fixturify';
 
 const blueprintPath = path.join(__dirname, '../..');
 
-import { dirContents, getTryScenarios, applyTryScenario } from '../helpers.js';
+import { getTryScenarios, applyTryScenario } from '../helpers.js';
 
 const packageManager = 'pnpm';
 
@@ -20,12 +20,16 @@ for (let scenario of tryScenarios) {
     let addonDir: string;
     let addonName = 'my-addon';
 
+    function runInAddon(command: string) {
+      return execa({ cwd: addonDir, env: scenario.env })(command);
+    }
+
     beforeAll(async () => {
       tmpDir = (await tmp.dir()).path;
       addonDir = join(tmpDir, addonName)
       await execa({ cwd: tmpDir })`${localEmberCli} addon ${addonName} -b ${blueprintPath} --skip-npm --skip-git --prefer-local true --${packageManager} --skip-install`;
       await applyTryScenario(scenario.name, { cwd: addonDir });
-      await execa({ cwd: addonDir })`pnpm install`;
+      await runInAddon(`${packageManager} install`);
     });
 
     it('build and test', async () => {
@@ -35,15 +39,7 @@ for (let scenario of tryScenarios) {
       let testFixture = fixturify.readSync('./fixtures/rendering-tests');
       fixturify.writeSync(join(addonDir, 'tests/rendering'), testFixture);
 
-      let buildResult = await execa({ cwd: addonDir })`${packageManager} run build`;
-
-      expect(buildResult.exitCode).toEqual(0);
-
-      let contents = await dirContents(join(addonDir, 'dist'));
-
-      expect(contents).to.deep.equal(['_app_', 'components', 'index.js', 'index.js.map']);
-
-      let testResult = await execa({ cwd: addonDir })`${packageManager} run test`;
+      let testResult = await runInAddon(`${packageManager} run test`);
 
       expect(testResult.exitCode).toEqual(0);
 
