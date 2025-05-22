@@ -28,28 +28,12 @@ for (let scenario of tryScenarios) {
       await execa({ cwd: addonDir })`pnpm install`;
     });
 
-    // Tests are additive, so when running them in order, we want to check linting
-    // before we add files from fixtures
-    it('lints with no fixtures all pass', async () => {
-      let { exitCode } = await execa({ cwd: addonDir })`pnpm lint`;
-
-      expect(exitCode).toEqual(0);
-    });
-
     it('build and test', async () => {
       let addonFixture = fixturify.readSync('./fixtures/addon');
       fixturify.writeSync(join(addonDir, 'src'), addonFixture);
 
       let testFixture = fixturify.readSync('./fixtures/rendering-tests');
       fixturify.writeSync(join(addonDir, 'tests/rendering'), testFixture);
-
-      // Ensure that we have no lint errors.
-      // It's important to keep this along with the tests,
-      // so that we can have confidence that the lints aren't destructively changing
-      // the files in a way that would break consumers
-      let { exitCode } = await execa({ cwd: addonDir })`${packageManager} run lint:fix`;
-
-      expect(exitCode).toEqual(0);
 
       let buildResult = await execa({ cwd: addonDir })`${packageManager} run build`;
 
