@@ -30,8 +30,8 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       packageManager === 'yarn'
         ? 'yarn.lock'
         : packageManager === 'pnpm'
-        ? 'pnpm-lock.yaml'
-        : 'package-lock.json';
+          ? 'pnpm-lock.yaml'
+          : 'package-lock.json';
 
     beforeAll(async () => {
       tmpDir = await createTmp();

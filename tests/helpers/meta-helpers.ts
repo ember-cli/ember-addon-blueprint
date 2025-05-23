@@ -28,11 +28,7 @@ export class AddonHelper {
   #args: string[];
   #fixtures: AddonFixtureHelper | undefined;
 
-  constructor(options: {
-    args?: string[];
-    scenario?: string;
-    packageManager: 'pnpm' | 'npm';
-  }) {
+  constructor(options: { args?: string[]; scenario?: string; packageManager: 'pnpm' | 'npm' }) {
     this.#args = options.args || [];
     this.#scenario = options.scenario || 'default';
     this.#packageManager = options.packageManager;
@@ -85,7 +81,7 @@ export class AddonHelper {
 
     assert(
       this.#tmpDir,
-      "Cannot clean without a tmpDir. Was the Addon Helper's `setup` method called to generate the addon?"
+      "Cannot clean without a tmpDir. Was the Addon Helper's `setup` method called to generate the addon?",
     );
 
     await fs.rm(this.#tmpDir, { recursive: true, force: true });

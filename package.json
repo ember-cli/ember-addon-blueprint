@@ -11,9 +11,12 @@
   },
   "license": "MIT",
   "author": "",
-  "scripts": {},
-  "dependencies": {},
+  "scripts": {
+    "lint": "prettier --check .",
+    "format": "prettier --write ."
+  },
   "devDependencies": {
+    "prettier": "^3.5.3",
     "release-plan": "^0.16.0"
   },
   "packageManager": "pnpm@10.6.5"

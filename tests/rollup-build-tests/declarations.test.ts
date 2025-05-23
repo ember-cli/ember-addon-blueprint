@@ -32,19 +32,20 @@ describe(`declarations-configuration`, () => {
     it('there are no top-level files, only nested in folders', async () => {
       await fse.rm(path.join(helper.projectRoot, 'src'), { recursive: true });
       await fse.mkdirp(path.join(helper.projectRoot, 'src/components'));
-      await fs.writeFile(path.join(helper.projectRoot, 'src/components/example.ts'), '/* empty file */');
+      await fs.writeFile(
+        path.join(helper.projectRoot, 'src/components/example.ts'),
+        '/* empty file */',
+      );
 
       let buildResult = await helper.build();
 
       expect(buildResult.exitCode).toEqual(0);
 
-      expect(await dirContents(declarationsDir)).to.deep.equal([
-        'components',
-      ]);
+      expect(await dirContents(declarationsDir)).to.deep.equal(['components']);
 
       expect(await dirContents(path.join(declarationsDir, 'components'))).to.deep.equal([
         'example.d.ts',
-        'example.d.ts.map'
+        'example.d.ts.map',
       ]);
     });
   });

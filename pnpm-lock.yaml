@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      prettier:
+        specifier: ^3.5.3
+        version: 3.5.3
       release-plan:
         specifier: ^0.16.0
         version: 0.16.0
@@ -25,7 +28,7 @@ importers:
         version: 7.14.0
       ember-cli:
         specifier: github:ember-cli/ember-cli#master
-        version: https://codeload.github.com/ember-cli/ember-cli/tar.gz/6974dc1b045505b2ff4f6b7ae74b47d8a020d3e6(handlebars@4.7.8)(underscore@1.13.7)
+        version: https://codeload.github.com/ember-cli/ember-cli/tar.gz/8ea8eb59e8f32682c538f48f40657d708ad325cc(handlebars@4.7.8)(underscore@1.13.7)
       execa:
         specifier: ^9.5.2
         version: 9.5.2
@@ -1586,9 +1589,9 @@ packages:
   ember-cli-string-utils@1.1.0:
     resolution: {integrity: sha512-PlJt4fUDyBrC/0X+4cOpaGCiMawaaB//qD85AXmDRikxhxVzfVdpuoec02HSiTGTTB85qCIzWBIh8lDOiMyyFg==}
 
-  ember-cli@https://codeload.github.com/ember-cli/ember-cli/tar.gz/6974dc1b045505b2ff4f6b7ae74b47d8a020d3e6:
-    resolution: {tarball: https://codeload.github.com/ember-cli/ember-cli/tar.gz/6974dc1b045505b2ff4f6b7ae74b47d8a020d3e6}
-    version: 6.4.0-beta.1
+  ember-cli@https://codeload.github.com/ember-cli/ember-cli/tar.gz/8ea8eb59e8f32682c538f48f40657d708ad325cc:
+    resolution: {tarball: https://codeload.github.com/ember-cli/ember-cli/tar.gz/8ea8eb59e8f32682c538f48f40657d708ad325cc}
+    version: 6.5.0-beta.0
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -3143,6 +3146,11 @@ packages:
   prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
+    hasBin: true
+
+  prettier@3.5.3:
+    resolution: {integrity: sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==}
+    engines: {node: '>=14'}
     hasBin: true
 
   pretty-ms@9.2.0:
@@ -5686,7 +5694,7 @@ snapshots:
 
   ember-cli-string-utils@1.1.0: {}
 
-  ember-cli@https://codeload.github.com/ember-cli/ember-cli/tar.gz/6974dc1b045505b2ff4f6b7ae74b47d8a020d3e6(handlebars@4.7.8)(underscore@1.13.7):
+  ember-cli@https://codeload.github.com/ember-cli/ember-cli/tar.gz/8ea8eb59e8f32682c538f48f40657d708ad325cc(handlebars@4.7.8)(underscore@1.13.7):
     dependencies:
       '@pnpm/find-workspace-dir': 1000.1.0
       babel-remove-types: 1.0.1
@@ -7523,6 +7531,8 @@ snapshots:
       source-map-js: 1.2.1
 
   prettier@2.8.8: {}
+
+  prettier@3.5.3: {}
 
   pretty-ms@9.2.0:
     dependencies:
