@@ -81,7 +81,7 @@
     "main": "addon-main.cjs"
   },
   "imports": {
-  "#src/*": "./src/*"
+    "#src/*": "./src/*"
   },
   "exports": {<% if (typescript) { %>
     ".": {

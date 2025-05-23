@@ -25,18 +25,17 @@ function emberScenario(tag) {
   };
 }
 
-
 /**
  * NOTE: if you chanege your real babel.config.cjs,
  *       you'll want to change this as well.
  *
-  * We need a different babel config for older ember support
-  * - 4.12
-  * - 5.4
-  *
-  * This is due to these ember's using `DEBUG` from `@glimmer/env`
-  * (something we don't want to encourage doing)
-  */
+ * We need a different babel config for older ember support
+ * - 4.12
+ * - 5.4
+ *
+ * This is due to these ember's using `DEBUG` from `@glimmer/env`
+ * (something we don't want to encourage doing)
+ */
 function compatBabel() {
   return `
 const { babelCompatSupport, templateCompatSupport } = require('@embroider/compat/babel');
@@ -72,8 +71,8 @@ module.exports = async function (defaults) {
 }
 
 function compatEmberScenario(name, emberVersion) {
-  let needsCompat = ['5.4.0', '4.12.0']
-  let needsBabelComat = needsCompat.some(v => emberVersion.includes(v));
+  let needsCompat = ['5.4.0', '4.12.0'];
+  let needsBabelComat = needsCompat.some((v) => emberVersion.includes(v));
 
   return {
     name,
