@@ -72,7 +72,9 @@ module.exports = async function (defaults) {
 }
 
 function compatEmberScenario(name, emberVersion) {
-  let needsBabelComat = emberVersion === '~5.4.0';
+  let needsCompat = ['5.4.0', '4.12.0']
+  let needsBabelComat = needsCompat.some(v => emberVersion.includes(v));
+
   return {
     name,
     npm: {
