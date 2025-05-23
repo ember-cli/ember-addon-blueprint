@@ -25,6 +25,42 @@ function emberScenario(tag) {
   };
 }
 
+
+/**
+ * NOTE: if you chanege your real babel.config.cjs,
+ *       you'll want to change this as well.
+ *
+  * We need a different babel config for older ember support
+  * - 4.12
+  * - 5.4
+  *
+  * This is due to these ember's using `DEBUG` from `@glimmer/env`
+  * (something we don't want to encourage doing)
+  */
+function compatBabel() {
+  return `
+const { babelCompatSupport, templateCompatSupport } = require('@embroider/compat/babel');
+module.exports = {
+  plugins: [
+    [ 'babel-plugin-ember-template-compilation', {
+        compilerPath: 'ember-source/dist/ember-template-compiler.js',
+        enableLegacyModules: [
+          'ember-cli-htmlbars',
+          'ember-cli-htmlbars-inline-precompile',
+          'htmlbars-inline-precompile',
+        ],
+        transforms: [...templateCompatSupport()],
+    }],
+    ['module:decorator-transforms', {
+        runtime: { import: require.resolve('decorator-transforms/runtime-esm') },
+    }],
+    ...babelCompatSupport(),
+  ],
+  generatorOpts: { compact: false },
+};
+`;
+}
+
 function emberCliBuildJS() {
   return `const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const { compatBuild } = require('@embroider/compat');
@@ -36,6 +72,7 @@ module.exports = async function (defaults) {
 }
 
 function compatEmberScenario(name, emberVersion) {
+  let needsBabelComat = emberVersion === '~5.4.0';
   return {
     name,
     npm: {
@@ -52,6 +89,7 @@ function compatEmberScenario(name, emberVersion) {
     },
     files: {
       'ember-cli-build.js': emberCliBuildJS(),
+      ...(needsBabelComat ? { 'babel.config.cjs': compatBabel() } : {}),
       'config/optional-features.json': JSON.stringify({
         'application-template-wrapper': false,
         'default-async-observers': true,

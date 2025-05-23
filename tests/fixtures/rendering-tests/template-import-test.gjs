@@ -1,7 +1,8 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import TemplateImport from "my-addon/components/template-import";
+
+import TemplateImport from "#src/components/template-import";
 
 module('Rendering | template-import', function(hooks) {
   setupRenderingTest(hooks);
