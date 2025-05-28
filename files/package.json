@@ -80,6 +80,9 @@
     "type": "addon",
     "main": "addon-main.cjs"
   },
+  "imports": {
+    "#src/*": "./src/*"
+  },
   "exports": {<% if (typescript) { %>
     ".": {
       "types": "./declarations/index.d.ts",
