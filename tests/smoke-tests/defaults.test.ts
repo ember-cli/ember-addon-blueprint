@@ -1,8 +1,9 @@
 import path, { join } from 'node:path';
+import fs from 'node:fs/promises';
 
 import tmp from 'tmp-promise';
 let localEmberCli = require.resolve('ember-cli/bin/ember');
-import { beforeAll, describe, expect, it } from 'vitest';
+import { beforeEach, beforeAll, describe, expect, it } from 'vitest';
 import { execa } from 'execa';
 import fixturify from 'fixturify';
 
@@ -17,6 +18,14 @@ import {
 } from '../helpers.js';
 import { existsSync } from 'node:fs';
 
+/**
+ * NOTE: tests run sequentially
+ *       we need to manually specify "concurrent" to run them in parallel
+ *
+ *       https://vitest.dev/guide/features.html#running-tests-concurrently
+ *
+ *       This is important because we delete stuff in one test that was created in another
+ */
 for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
   describe(`defaults with ${packageManager}`, () => {
     let tmpDir: string;
@@ -94,43 +103,56 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       expect(exitCode).toEqual(0);
     });
 
-    it('build and test', async () => {
-      let addonFixture = fixturify.readSync('./fixtures/addon');
-      fixturify.writeSync(join(addonDir, 'src'), addonFixture);
-
-      let testFixture = fixturify.readSync('./fixtures/rendering-tests');
-      fixturify.writeSync(join(addonDir, 'tests/rendering'), testFixture);
-
-      // Ensure that we have no lint errors.
-      // It's important to keep this along with the tests,
-      // so that we can have confidence that the lints aren't destructively changing
-      // the files in a way that would break consumers
+    it('lint:fix with no fixtures', async () => {
       let { exitCode } = await execa({ cwd: addonDir })`${packageManager} run lint:fix`;
 
       expect(exitCode).toEqual(0);
+    });
 
-      let buildResult = await execa({ cwd: addonDir })`${packageManager} run build`;
+    describe('with fixture', () => {
+      beforeEach(async () => {
+        let addonFixture = fixturify.readSync('./fixtures/addon');
+        fixturify.writeSync(join(addonDir, 'src'), addonFixture);
 
-      expect(buildResult.exitCode).toEqual(0);
+        let testFixture = fixturify.readSync('./fixtures/rendering-tests');
+        fixturify.writeSync(join(addonDir, 'tests/rendering'), testFixture);
+      });
 
-      let contents = await dirContents(join(addonDir, 'dist'));
+      it('lint:fix', async () => {
+        let { exitCode } = await execa({ cwd: addonDir })`${packageManager} run lint:fix`;
 
-      expect(contents).to.deep.equal(['_app_', 'components', 'index.js', 'index.js.map']);
+        expect(exitCode).toEqual(0);
+      });
 
-      let testResult = await await execa({ cwd: addonDir })`${packageManager} run test`;
+      it('build', async () => {
+        let buildResult = await execa({ cwd: addonDir })`${packageManager} run build`;
 
-      expect(testResult.exitCode).toEqual(0);
+        expect(buildResult.exitCode).toEqual(0);
 
-      expect(testResult.stdout).includes(
-        `# tests 2
+        let contents = await dirContents(join(addonDir, 'dist'));
+
+        expect(contents).to.deep.equal(['_app_', 'components', 'index.js', 'index.js.map']);
+      });
+
+      it('test', async () => {
+        // It's important that we ensure that dist directory is empty for this test, because
+        await fs.rm(join(addonDir, 'dist'), { recursive: true, force: true });
+
+        let testResult = await execa({ cwd: addonDir })`${packageManager} run test`;
+
+        expect(testResult.exitCode).toEqual(0);
+
+        expect(testResult.stdout).includes(
+          `# tests 2
 # pass  2
 # skip  0
 # todo  0
 # fail  0
 
 # ok`,
-        testResult.stdout,
-      );
+          testResult.stdout,
+        );
+      });
     });
   });
 }

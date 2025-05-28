@@ -5,7 +5,7 @@ export default class TemplateImport extends Component {
   <template>
     Hello from a GJS file
 
-    <button {{on "click" this.saySomething}}></button>
+    <button {{on "click" this.saySomething}} type="button"></button>
   </template>
 
   saySomething() {
