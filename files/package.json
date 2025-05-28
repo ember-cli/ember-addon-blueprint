@@ -25,7 +25,7 @@
     "lint:js:fix": "eslint . --fix",<% if (typescript) { %>
     "lint:types": "glint",<% } %>
     "start": "vite dev",
-    "test": "vite build --mode=development && testem --file testem.cjs ci",
+    "test": "vite build --mode=development && testem --file testem.cjs ci --port 0",
     "prepack": "rollup --config"
   },
   "dependencies": {
@@ -38,10 +38,11 @@
     "@babel/plugin-transform-typescript": "^7.25.2",<% } %>
     "@babel/runtime": "^7.25.6",
     "@ember/test-helpers": "^5.2.1",
-    "@embroider/addon-dev": "^7.1.0",
-    "@embroider/core": "^4.0.0-alpha.10",
-    "@embroider/macros": "^1.17.0-alpha.8",
-    "@embroider/vite": "^1.0.0-alpha.12",
+    "@embroider/addon-dev": "^8.0.1",
+    "@embroider/core": "^4.1.0",
+    "@embroider/compat": "^4.1.0",
+    "@embroider/macros": "^1.18.0",
+    "@embroider/vite": "^1.1.5",
     "@eslint/js": "^9.17.0",
     "@glimmer/component": "^2.0.0",<% if (typescript) { %>
     "@glint/core": "^1.4.0",

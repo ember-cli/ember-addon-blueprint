@@ -80,6 +80,7 @@ jobs:
         slow-test:
           - defaults with npm
           - defaults with pnpm
+          - try-scenarios
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

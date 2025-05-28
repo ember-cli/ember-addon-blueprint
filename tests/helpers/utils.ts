@@ -1,6 +1,8 @@
 import fs from 'node:fs/promises';
 import os from 'node:os';
+import assert from 'node:assert';
 import path from 'node:path';
+import { $ } from 'execa';
 import { fileURLToPath } from 'node:url';
 
 import { execa, type Options } from 'execa';
@@ -10,8 +12,31 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // repo-root
 const blueprintPath = path.join(__dirname, '../..');
+const defaultTryPath = path.join(blueprintPath, 'files/.try.mjs');
 
 export const SUPPORTED_PACKAGE_MANAGERS = ['npm', 'pnpm'] as const;
+
+export async function getTryScenarios(filePath = defaultTryPath) {
+  let scenarioInfo = await import(filePath);
+
+  return scenarioInfo.default?.scenarios ?? [];
+}
+
+export async function applyTryScenario(
+  tryName: string,
+  options: { cwd: string; filePath?: string },
+) {
+  let { filePath = defaultTryPath, cwd } = options;
+  assert(cwd, 'applyTryScenario cwd is required');
+  let scenarios = await getTryScenarios(filePath);
+  let validNames = scenarios.map((x: { name: string }) => x.name);
+
+  assert(
+    validNames.includes(tryName),
+    `Invalid try scenario name: ${tryName}. Valid names: ${validNames.join(', ')}`,
+  );
+  return await $({ cwd })`pnpm dlx @embroider/try apply ${tryName}`;
+}
 
 export async function createTmp() {
   let prefix = 'v2-addon-blueprint--';
