@@ -24,8 +24,8 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       await helper.setup();
       await helper.installDeps();
 
-      distDir = path.join(helper.addonFolder, 'dist');
-      declarationsDir = path.join(helper.addonFolder, 'declarations');
+      distDir = path.join(helper.projectRoot, 'dist');
+      declarationsDir = path.join(helper.projectRoot, 'declarations');
     });
 
     afterAll(async () => {
@@ -62,14 +62,6 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       // so that we can have confidence that the lints aren't destructively changing
       // the files in a way that would break consumers
       await helper.run('lint:fix');
-
-      /**
-       * In order to use build with components, we need to add more dependencies
-       * We may want to consider making these default
-       */
-      await execa('pnpm', ['add', '--save-peer', '@glimmer/component'], {
-        cwd: helper.addonFolder,
-      });
 
       let buildResult = await helper.build();
 
