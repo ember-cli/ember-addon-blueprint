@@ -64,8 +64,13 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
 
         expect(buildResult.exitCode).toEqual(0);
 
+        let src = await dirContents(join(addonDir, 'src'));
         let dist = await dirContents(join(addonDir, 'dist'));
         let declarations = await dirContents(join(addonDir, 'dist'));
+
+        expect({ src }, 'ensure we dont litter the src dir with declarations').to.deep.equal({
+          src: ['components', 'index.ts', 'template-registry.ts'],
+        });
 
         expect({ dist, declarations }).to.deep.equal({
           dist: [
