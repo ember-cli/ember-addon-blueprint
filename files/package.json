@@ -51,7 +51,8 @@
     "@glint/template": "^1.4.0",
     "@ember/app-tsconfig": "^1.0.0",
     "@ember/library-tsconfig": "^1.0.0",<% } %>
-    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-babel": "^6.0.4",<% if (typescript) { %>
+    "@types/qunit": "^2.19.12",<% } %>
     "babel-plugin-ember-template-compilation": "^2.2.5",
     "concurrently": "^9.0.1",
     "ember-qunit": "^9.0.2",

@@ -28,10 +28,6 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       declarationsDir = path.join(helper.projectRoot, 'declarations');
     });
 
-    afterAll(async () => {
-      await helper.clean();
-    });
-
     it('was generated correctly', async () => {
       await helper.build();
 

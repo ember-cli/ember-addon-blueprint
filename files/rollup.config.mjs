@@ -10,7 +10,7 @@ const addon = new Addon({
 
 const rootDirectory = dirname(fileURLToPath(import.meta.url));
 const configs = {
-  babel: resolve(rootDirectory, './babel.pubish.config.cjs'),<% if (typescript) { %>
+  babel: resolve(rootDirectory, './babel.publish.config.cjs'),<% if (typescript) { %>
   ts: resolve(rootDirectory, './tsconfig.publish.json'),<% } %>
 };
 
@@ -63,7 +63,7 @@ export default {
     addon.gjs(),<% if (typescript) { %>
 
     // Emit .d.ts declaration files
-    addon.declarations('declarations', `<%= packageManager %> exec glint --project ${configs.ts}`),<% } %>
+    addon.declarations('declarations', `<%= packageManager %> exec glint --declaration --project ${configs.ts}`),<% } %>
 
     // addons are allowed to contain imports of .css files, which we want rollup
     // to leave alone and keep in the published output.
