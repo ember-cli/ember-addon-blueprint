@@ -18,9 +18,27 @@ class TestApp extends EmberApp {
 Router.map(function () {});
 
 import * as QUnit from 'qunit';
-import { setApplication } from '@ember/test-helpers';
+import { setApplication, getSettledState } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';
+import { getPendingWaiterState } from '@ember/test-waiters';
 import { start as qunitStart, setupEmberOnerrorValidation } from 'ember-qunit';
+
+Object.assign(window, {
+  getSettledState,
+  getPendingWaiterState,
+  snapshotTimers: (label?: string) => {
+    const result = JSON.parse(
+      JSON.stringify({
+        settled: getSettledState(),
+        waiters: getPendingWaiterState(),
+      })
+    );
+
+    console.debug(label ?? 'snapshotTimers', result);
+
+    return result;
+  },
+});
 
 export function start() {
   setApplication(
