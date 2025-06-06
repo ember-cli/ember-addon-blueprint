@@ -11,7 +11,7 @@ import {
 } from '../helpers.js';
 
 for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
-  describe.skip(`--typescript with ${packageManager}`, () => {
+  describe(`--typescript with ${packageManager}`, () => {
     let distDir = '';
     let declarationsDir = '';
     let helper = new AddonHelper({
