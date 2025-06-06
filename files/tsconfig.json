@@ -1,25 +1,23 @@
+/**
+ * This tsconfig is not used for publishing.
+ * It's only for the local editing experience
+ * (and linting)
+ */
 {
-  "extends": "@ember/library-tsconfig",
-  "include": ["src/**/*", "unpublished-development-types/**/*"],
+  "extends": "@ember/app-tsconfig",
   "glint": {
     "environment": ["ember-loose", "ember-template-imports"]
   },
+  "include": ["src", "tests", "unpublished-development-types"],
   "compilerOptions": {
-    "allowJs": true,
-    "declarationDir": "declarations",
-
-    /**
-      https://www.typescriptlang.org/tsconfig#rootDir
-      "Default: The longest common path of all non-declaration input files."
-
-      Because we want our declarations' structure to match our rollup output,
-      we need this "rootDir" to match the "srcDir" in the rollup.config.mjs.
-
-      This way, we can have simpler `package.json#exports` that matches
-      imports to files on disk
-    */
-    "rootDir": "./src",
-
-    "types": ["ember-source/types"]
+    "rootDir": ".",
+    "types": [
+      "ember-source/types",
+      "vite/client",
+      "kolay/virtual",
+      "@embroider/core/virtual",
+      "unplugin-info/client"
+    ],
+    "paths": {}
   }
 }
