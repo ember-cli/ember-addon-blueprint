@@ -68,7 +68,14 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
         let declarations = await dirContents(join(addonDir, 'dist'));
 
         expect({ dist, declarations }).to.deep.equal({
-          dist: ['_app_', 'components', 'index.js', 'index.js.map'],
+          dist: [
+            '_app_',
+            'components',
+            'index.js',
+            'index.js.map',
+            'template-registry.js',
+            'template-registry.js.map',
+          ],
           declarations: [
             'components',
             'index.d.ts',
