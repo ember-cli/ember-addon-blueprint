@@ -52,8 +52,8 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
 
     it('build and test', async () => {
       // Copy over fixtures
-      await helper.fixtures.use('./my-addon/src');
-      await helper.fixtures.use('./test-app/tests');
+      await helper.fixtures.use('./src');
+      await helper.fixtures.use('./tests');
       // Sync fixture with project's lint / formatting configuration
       // (controlled by ember-cli)
       //
