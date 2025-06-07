@@ -64,8 +64,9 @@ export default {
 
     // Emit .d.ts declaration files
     addon.declarations(
-      'declarations',
-      `<%= packageManager %> exec glint --declaration --project ${configs.ts}`,
+      'declarations',<% if (packageManager === 'pnpm') { %>
+      `pnpm glint --declaration --project ${configs.ts}`,<% } else { %>
+      `npm exec glint -- --declaration --project ${configs.ts}`,<% } %>
     ),<% } %>
 
     // addons are allowed to contain imports of .css files, which we want rollup
