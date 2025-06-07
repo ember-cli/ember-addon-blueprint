@@ -48,7 +48,8 @@
     "@glint/core": "unstable",
     "@glint/environment-ember-loose": "unstable",
     "@glint/environment-ember-template-imports": "unstable",
-    "@glint/template": "^1.5.2",
+    "@glint/tsserver-plugin": "unstable",
+    "@glint/template": "unstable",
     "@ember/app-tsconfig": "^1.0.0",
     "@ember/library-tsconfig": "^1.0.0",<% } %>
     "@rollup/plugin-babel": "^6.0.4",<% if (typescript) { %>
