@@ -53,7 +53,7 @@ export default {
     babel({
       extensions: ['.js', '.gjs'<% if (typescript) { %>, '.ts', '.gts'<% } %>],
       babelHelpers: 'bundled',
-      configFile: configs.babel
+      configFile: configs.babel,
     }),
 
     // Ensure that standalone .hbs files are properly integrated as Javascript.
@@ -65,7 +65,7 @@ export default {
     // Emit .d.ts declaration files
     addon.declarations(
       'declarations',
-      `<%= packageManager %> exec glint --declaration --project ${configs.ts}`
+      `<%= packageManager %> exec glint --declaration --project ${configs.ts}`,
     ),<% } %>
 
     // addons are allowed to contain imports of .css files, which we want rollup

@@ -11,11 +11,7 @@
   "include": ["src/**/*", "tests/**/*", "unpublished-development-types/**/*"],
   "compilerOptions": {
     "rootDir": ".",
-    "types": [
-      "ember-source/types",
-      "vite/client",
-      "@embroider/core/virtual",
-    ],
+    "types": ["ember-source/types", "vite/client", "@embroider/core/virtual"],
     "paths": {}
   }
 }

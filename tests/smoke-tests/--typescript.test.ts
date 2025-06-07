@@ -15,12 +15,37 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
     let addonDir: string;
     let addonName = 'my-addon';
 
+    async function commandSucceeds(command: string) {
+      let result = await execa({
+        cwd: addonDir,
+        shell: true,
+        preferLocal: true,
+        // Allows us to not fail yet when the command fails
+        // but we'd still fail appropriately with the exitCode check below.
+        // When we fail, we want to check for git diffs for debugging purposes.
+        reject: false,
+      })(command);
+
+      if (result.exitCode !== 0) {
+        console.log(result);
+        console.log(`\n\n${command} exited with code ${result.exitCode}\n\n`);
+        console.log(result.stdout);
+        console.log(result.stderr);
+        console.log(`\n\n git diff \n\n`);
+        await execa({ cwd: addonDir, stdio: 'inherit' })`git diff`;
+      }
+
+      expect(result.exitCode, `\`${command}\` succeeds`).toEqual(0);
+
+      return result;
+    }
+
     beforeAll(async () => {
       tmpDir = (await tmp.dir()).path;
       addonDir = join(tmpDir, addonName);
       await execa({
         cwd: tmpDir,
-      })`${localEmberCli} addon ${addonName} -b ${blueprintPath} --skip-npm --skip-git --prefer-local true --${packageManager} --typescript`;
+      })`${localEmberCli} addon ${addonName} -b ${blueprintPath} --skip-npm --prefer-local true --${packageManager} --typescript`;
       await execa({ cwd: addonDir })`${packageManager} install`;
     });
 
@@ -35,9 +60,7 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
     // Tests are additive, so when running them in order, we want to check linting
     // before we add files from fixtures
     it('lints pass', async () => {
-      let { exitCode } = await execa({ cwd: addonDir })`pnpm lint`;
-
-      expect(exitCode).toEqual(0);
+      await commandSucceeds(`${packageManager} run lint`);
     });
 
     describe('with fixture', () => {
@@ -54,19 +77,15 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       });
 
       it('lint:fix', async () => {
-        let { exitCode } = await execa({ cwd: addonDir })`${packageManager} run lint:fix`;
-
-        expect(exitCode).toEqual(0);
+        await commandSucceeds(`${packageManager} run lint:fix`);
       });
 
       it('build', async () => {
-        let buildResult = await execa({ cwd: addonDir })`${packageManager} run build`;
-
-        expect(buildResult.exitCode).toEqual(0);
+        await commandSucceeds(`${packageManager} run build`);
 
         let src = await dirContents(join(addonDir, 'src'));
         let dist = await dirContents(join(addonDir, 'dist'));
-        let declarations = await dirContents(join(addonDir, 'dist'));
+        let declarations = await dirContents(join(addonDir, 'declarations'));
 
         expect({ src }, 'ensure we dont litter the src dir with declarations').to.deep.equal({
           src: ['components', 'index.ts', 'template-registry.ts'],
@@ -85,7 +104,6 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
             'components',
             'index.d.ts',
             'index.d.ts.map',
-            'services',
             'template-registry.d.ts',
             'template-registry.d.ts.map',
           ],
@@ -93,13 +111,11 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       });
 
       it('test', async () => {
-        let testResult = await execa({ cwd: addonDir })`${packageManager} run test`;
+        let testResult = await commandSucceeds(`${packageManager} run test`);
 
-        expect(testResult.exitCode).toEqual(0);
-
-        expect(testResult.exitCode).toEqual(0);
-        expect(testResult.stdout).to.include('# tests 5');
-        expect(testResult.stdout).to.include('# pass  5');
+        console.log(testResult.stdout);
+        expect(testResult.stdout).to.include('# tests 2');
+        expect(testResult.stdout).to.include('# pass  2');
         expect(testResult.stdout).to.include('# fail  0');
       });
     });
