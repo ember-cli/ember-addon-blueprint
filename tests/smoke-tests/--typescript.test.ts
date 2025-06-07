@@ -88,16 +88,17 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
         let dist = await dirContents(join(addonDir, 'dist'));
         let declarations = await dirContents(join(addonDir, 'declarations'));
 
-        expect({ src }, 'ensure we dont litter the src dir with declarations').to.deep.equal({
-          src: ['components', 'index.ts', 'template-registry.ts'],
-        });
-
-        expect({ dist, declarations }).to.deep.equal({
+        expect(
+          { src, dist, declarations },
+          `ensure we don't pollute the src dir with declarations and emit the js and .d.ts to the correct folders`,
+        ).to.deep.equal({
+          src: ['components', 'index.ts', 'services', 'template-registry.ts'],
           dist: [
             '_app_',
             'components',
             'index.js',
             'index.js.map',
+            'services',
             'template-registry.js',
             'template-registry.js.map',
           ],
@@ -105,6 +106,7 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
             'components',
             'index.d.ts',
             'index.d.ts.map',
+            'services',
             'template-registry.d.ts',
             'template-registry.d.ts.map',
           ],
