@@ -45,9 +45,9 @@
     "@embroider/vite": "^1.1.5",
     "@eslint/js": "^9.17.0",
     "@glimmer/component": "^2.0.0",<% if (typescript) { %>
-    "@glint/core": "1.4.1-unstable.d17c1f1",
-    "@glint/environment-ember-loose": "1.4.1-unstable.d17c1f1",
-    "@glint/environment-ember-template-imports": "1.4.1-unstable.d17c1f1",
+    "@glint/core": "unstable",
+    "@glint/environment-ember-loose": "unstable",
+    "@glint/environment-ember-template-imports": "unstable",
     "@glint/template": "^1.5.2",
     "@ember/app-tsconfig": "^1.0.0",
     "@ember/library-tsconfig": "^1.0.0",<% } %>
