@@ -84,12 +84,18 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       it('build', async () => {
         await commandSucceeds(`${packageManager} run build`);
 
-        let src = await dirContents(join(addonDir, 'src'));
-        let dist = await dirContents(join(addonDir, 'dist'));
-        let declarations = await dirContents(join(addonDir, 'declarations'));
-
         expect(
-          { src, dist, declarations },
+          {
+            src: await dirContents(join(addonDir, 'src')),
+            // rollup output:
+            dist: await dirContents(join(addonDir, 'dist')),
+            'dist/components': await dirContents(join(addonDir, 'dist/components')),
+            'dist/services': await dirContents(join(addonDir, 'dist/services')),
+            // glint output:
+            declarations: await dirContents(join(addonDir, 'declarations')),
+            'declarations/components': await dirContents(join(addonDir, 'declarations/components')),
+            'declarations/services': await dirContents(join(addonDir, 'declarations/services')),
+          },
           `ensure we don't pollute the src dir with declarations and emit the js and .d.ts to the correct folders`,
         ).to.deep.equal({
           src: ['components', 'index.ts', 'services', 'template-registry.ts'],
@@ -102,6 +108,13 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
             'template-registry.js',
             'template-registry.js.map',
           ],
+          'dist/components': [
+            'another-gts.js',
+            'another-gts.js.map',
+            'template-import.js',
+            'template-import.js.map',
+          ],
+          'dist/services': ['example.js', 'example.js.map'],
           declarations: [
             'components',
             'index.d.ts',
@@ -110,6 +123,13 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
             'template-registry.d.ts',
             'template-registry.d.ts.map',
           ],
+          'declarations/components': [
+            'another-gts.gts.d.ts',
+            'another-gts.gts.d.ts.map',
+            'template-import.gts.d.ts',
+            'template-import.gts.d.ts.map',
+          ],
+          'declarations/services': ['example.d.ts', 'example.d.ts.map'],
         });
       });
 
