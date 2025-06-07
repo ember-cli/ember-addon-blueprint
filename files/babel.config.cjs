@@ -12,11 +12,14 @@ const isCompat = Boolean(process.env.ENABLE_COMPAT_BUILD);
 
 module.exports = {
   plugins: [<% if (typescript) { %>
-    ['@babel/plugin-transform-typescript', {
-      allExtensions: true,
-      allowDeclareFields: true,
-      onlyRemoveTypeImports: true,
-    }],<% } %>
+    [
+      '@babel/plugin-transform-typescript',
+      {
+        allExtensions: true,
+        allowDeclareFields: true,
+        onlyRemoveTypeImports: true,
+      },
+    ],<% } %>
     [
       'babel-plugin-ember-template-compilation',
       {

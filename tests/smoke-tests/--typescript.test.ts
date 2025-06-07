@@ -1,42 +1,61 @@
-import path from 'node:path';
-
+import path, { join } from 'node:path';
+import tmp from 'tmp-promise';
+import fs from 'node:fs/promises';
+import fixturify from 'fixturify';
 import { execa } from 'execa';
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
-import {
-  AddonHelper,
-  assertGeneratedCorrectly,
-  dirContents,
-  SUPPORTED_PACKAGE_MANAGERS,
-} from '../helpers.js';
+import { assertGeneratedCorrectly, dirContents, SUPPORTED_PACKAGE_MANAGERS } from '../helpers.js';
+const blueprintPath = path.join(__dirname, '../..');
+let localEmberCli = require.resolve('ember-cli/bin/ember');
 
 for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
-  describe.skip(`--typescript with ${packageManager}`, () => {
-    let distDir = '';
-    let declarationsDir = '';
-    let helper = new AddonHelper({
-      packageManager,
-      args: ['--typescript'],
-      scenario: 'typescript',
-    });
+  describe(`--typescript with ${packageManager}`, () => {
+    let tmpDir: string;
+    let addonDir: string;
+    let addonName = 'my-addon';
+
+    async function commandSucceeds(command: string) {
+      let result = await execa({
+        cwd: addonDir,
+        shell: true,
+        preferLocal: true,
+        // Allows us to not fail yet when the command fails
+        // but we'd still fail appropriately with the exitCode check below.
+        // When we fail, we want to check for git diffs for debugging purposes.
+        reject: false,
+      })(command);
+
+      if (result.exitCode !== 0) {
+        console.log(result);
+        console.log(`\n\n${command} exited with code ${result.exitCode}\n\n`);
+        console.log(result.stdout);
+        console.log(result.stderr);
+        console.log(`\n\n git diff \n\n`);
+        await execa({ cwd: addonDir, stdio: 'inherit' })`git diff`;
+      }
+
+      expect(result.exitCode, `\`${command}\` succeeds`).toEqual(0);
+
+      return result;
+    }
 
     beforeAll(async () => {
-      await helper.setup();
-      await helper.installDeps();
-
-      distDir = path.join(helper.addonFolder, 'dist');
-      declarationsDir = path.join(helper.addonFolder, 'declarations');
-    });
-
-    afterAll(async () => {
-      await helper.clean();
+      tmpDir = (await tmp.dir()).path;
+      addonDir = join(tmpDir, addonName);
+      await execa({
+        cwd: tmpDir,
+      })`${localEmberCli} addon ${addonName} -b ${blueprintPath} --skip-npm --prefer-local true --${packageManager} --typescript`;
+      // Have to use --force because NPM is *stricter* when you use tags in package.json
+      // than pnpm (in that tags don't match any specified stable version)
+      await execa({
+        cwd: addonDir,
+      })`${packageManager} install ${packageManager === 'npm' ? '--force' : ''}`;
     });
 
     it('was generated correctly', async () => {
-      await helper.build();
-
       assertGeneratedCorrectly({
-        projectRoot: helper.projectRoot,
+        projectRoot: addonDir,
         packageManager,
         typeScript: true,
       });
@@ -44,69 +63,84 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
 
     // Tests are additive, so when running them in order, we want to check linting
     // before we add files from fixtures
-    it('lints all pass', async () => {
-      let { exitCode } = await helper.run('lint');
-
-      expect(exitCode).toEqual(0);
+    it('lints pass', async () => {
+      await commandSucceeds(`${packageManager} run lint`);
     });
 
-    it('build and test', async () => {
-      // Copy over fixtures
-      await helper.fixtures.use('./my-addon/src');
-      await helper.fixtures.use('./test-app/tests');
-      // Sync fixture with project's lint / formatting configuration
-      // (controlled by ember-cli)
-      //
-      // Ensure that we have no lint errors.
-      // It's important to keep this along with the tests,
-      // so that we can have confidence that the lints aren't destructively changing
-      // the files in a way that would break consumers
-      await helper.run('lint:fix');
+    describe('with fixture', () => {
+      beforeEach(async () => {
+        let addonFixture = fixturify.readSync('./fixtures/typescript');
+        fixturify.writeSync(addonDir, addonFixture);
 
-      /**
-       * In order to use build with components, we need to add more dependencies
-       * We may want to consider making these default
-       */
-      await execa('pnpm', ['add', '--save-peer', '@glimmer/component'], {
-        cwd: helper.addonFolder,
+        // It's important that we ensure that dist directory is empty for these tests,
+        // troll-y things can happen with shared dists
+        await fs.rm(join(addonDir, 'dist'), { recursive: true, force: true });
       });
 
-      let buildResult = await helper.build();
+      it('lint:fix', async () => {
+        await commandSucceeds(`${packageManager} run lint:fix`);
+      });
 
-      expect(buildResult.exitCode).toEqual(0);
+      it('build', async () => {
+        await commandSucceeds(`${packageManager} run build`);
 
-      let distContents = await dirContents(distDir);
-      let declarationsContents = await dirContents(declarationsDir);
+        expect(
+          {
+            src: await dirContents(join(addonDir, 'src')),
+            // rollup output:
+            dist: await dirContents(join(addonDir, 'dist')),
+            'dist/components': await dirContents(join(addonDir, 'dist/components')),
+            'dist/services': await dirContents(join(addonDir, 'dist/services')),
+            // glint output:
+            declarations: await dirContents(join(addonDir, 'declarations')),
+            'declarations/components': await dirContents(join(addonDir, 'declarations/components')),
+            'declarations/services': await dirContents(join(addonDir, 'declarations/services')),
+          },
+          `ensure we don't pollute the src dir with declarations and emit the js and .d.ts to the correct folders`,
+        ).to.deep.equal({
+          src: ['components', 'index.ts', 'services', 'template-registry.ts'],
+          dist: [
+            '_app_',
+            'components',
+            'index.js',
+            'index.js.map',
+            'services',
+            'template-registry.js',
+            'template-registry.js.map',
+          ],
+          'dist/components': [
+            'another-gts.js',
+            'another-gts.js.map',
+            'template-import.js',
+            'template-import.js.map',
+          ],
+          'dist/services': ['example.js', 'example.js.map'],
+          declarations: [
+            'components',
+            'index.d.ts',
+            'index.d.ts.map',
+            'services',
+            'template-registry.d.ts',
+            'template-registry.d.ts.map',
+          ],
+          'declarations/components': [
+            'another-gts.gts.d.ts',
+            'another-gts.gts.d.ts.map',
+            'template-import.gts.d.ts',
+            'template-import.gts.d.ts.map',
+          ],
+          'declarations/services': ['example.d.ts', 'example.d.ts.map'],
+        });
+      });
 
-      expect(distContents).toMatchInlineSnapshot(`
-        [
-          "_app_",
-          "components",
-          "index.js",
-          "index.js.map",
-          "services",
-          "template-registry.js",
-          "template-registry.js.map",
-        ]
-      `);
+      it('test', async () => {
+        let testResult = await commandSucceeds(`${packageManager} run test`);
 
-      expect(declarationsContents).toMatchInlineSnapshot(`
-        [
-          "components",
-          "index.d.ts",
-          "index.d.ts.map",
-          "services",
-          "template-registry.d.ts",
-          "template-registry.d.ts.map",
-        ]
-      `);
-
-      let testResult = await helper.run('test');
-
-      expect(testResult.exitCode).toEqual(0);
-      expect(testResult.stdout).to.include('# tests 5');
-      expect(testResult.stdout).to.include('# pass  5');
-      expect(testResult.stdout).to.include('# fail  0');
+        console.log(testResult.stdout);
+        expect(testResult.stdout).to.include('# tests 2');
+        expect(testResult.stdout).to.include('# pass  2');
+        expect(testResult.stdout).to.include('# fail  0');
+      });
     });
   });
 }
