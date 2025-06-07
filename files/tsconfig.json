@@ -14,9 +14,7 @@
     "types": [
       "ember-source/types",
       "vite/client",
-      "kolay/virtual",
       "@embroider/core/virtual",
-      "unplugin-info/client"
     ],
     "paths": {}
   }
