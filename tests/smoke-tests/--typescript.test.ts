@@ -46,7 +46,11 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       await execa({
         cwd: tmpDir,
       })`${localEmberCli} addon ${addonName} -b ${blueprintPath} --skip-npm --prefer-local true --${packageManager} --typescript`;
-      await execa({ cwd: addonDir })`${packageManager} install`;
+      // Have to use --force because NPM is *stricter* when you use tags in package.json
+      // than pnpm (in that tags don't match any specified stable version)
+      await execa({
+        cwd: addonDir,
+      })`${packageManager} install ${packageManager === 'npm' ? '--force' : ''}`;
     });
 
     it('was generated correctly', async () => {
@@ -65,11 +69,8 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
 
     describe('with fixture', () => {
       beforeEach(async () => {
-        let addonFixture = fixturify.readSync('./fixtures/addon');
-        fixturify.writeSync(join(addonDir, 'src'), addonFixture);
-
-        let testFixture = fixturify.readSync('./fixtures/rendering-tests');
-        fixturify.writeSync(join(addonDir, 'tests/rendering'), testFixture);
+        let addonFixture = fixturify.readSync('./fixtures/typescript');
+        fixturify.writeSync(addonDir, addonFixture);
 
         // It's important that we ensure that dist directory is empty for these tests,
         // troll-y things can happen with shared dists

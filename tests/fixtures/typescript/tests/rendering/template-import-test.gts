@@ -10,6 +10,6 @@ module('Rendering | template-import', function(hooks) {
   test('it renders', async function(assert) {
     await render(<template><TemplateImport @saying="what" /></template>);
 
-    assert.dom().hasText('Hello from a GTS file but also Hello from a template-only component and Hello from another GTS file!');
+    assert.dom().hasText('Hello from a GTS file but also Hello from another GTS file!');
   })
 });

@@ -16,7 +16,7 @@ export default class TemplateImport extends Component<Signature> {
     <div ...attributes>
       Hello from a GTS file but also <AnotherGts />
 
-      <button {{on "click" (fn this.saySomething @saying)}}></button>
+      <button {{on "click" (fn this.saySomething @saying)}} type="button"></button>
     </div>
   </template>
 
