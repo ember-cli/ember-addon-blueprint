@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-06-10)
+
+* @ember/addon-blueprint 0.6.1 (patch)
+
+#### :bug: Bug Fix
+* `@ember/addon-blueprint`
+  * [#57](https://github.com/ember-cli/ember-addon-blueprint/pull/57) Tests should use different output directory as to not troll the library author ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2025-06-05)
 
 * @ember/addon-blueprint 0.6.0 (minor)
