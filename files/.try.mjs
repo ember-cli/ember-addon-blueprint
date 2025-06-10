@@ -3,61 +3,89 @@ export default scenarios();
 function scenarios() {
   return {
     scenarios: [
-      compatEmberScenario('ember-lts-5.8', '~5.4.0'),
-      compatEmberScenario('ember-lts-5.12', '~5.12.0'),
-      emberScenario('~6.4.0'),
-      emberScenario('latest'),
-      emberScenario('beta'),
-      emberScenario('alpha'),
+      {
+        name: 'ember-lts-5.8',
+        npm: {
+          devDependencies: {
+            'ember-source': '~5.8.0',
+            ...compatDeps,
+          },
+        },
+        env: {
+          ENABLE_COMPAT_BUILD: true,
+        },
+        files: compatFiles,
+      },
+      {
+        name: 'ember-lts-5.12',
+        npm: {
+          devDependencies: {
+            'ember-source': '~5.12.0',
+            ...compatDeps
+          },
+        },
+        env: {
+          ENABLE_COMPAT_BUILD: true,
+        },
+        files: compatFiles,
+      },
+      {
+        name: `ember-lts-6.4`,
+        npm: {
+          devDependencies: {
+            'ember-source': `npm:ember-source@~6.4.0`,
+          },
+        },
+      },
+      {
+        name: `ember-latest`,
+        npm: {
+          devDependencies: {
+            'ember-source': `npm:ember-source@latest`,
+          },
+        },
+      },
+      {
+        name: `ember-beta`,
+        npm: {
+          devDependencies: {
+            'ember-source': `npm:ember-source@beta`,
+          },
+        },
+      },
+      {
+        name: `ember-alpha`,
+        npm: {
+          devDependencies: {
+            'ember-source': `npm:ember-source@alpha`,
+          },
+        },
+      },
     ],
   };
 }
 
-function emberScenario(tag) {
-  return {
-    name: `ember-${tag}`,
-    npm: {
-      devDependencies: {
-        'ember-source': `npm:ember-source@${tag}`,
-      },
-    },
-  };
-}
-
-function emberCliBuildJS() {
-  return `const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+// When building your addon for older Ember versions you need to have the required files
+const compatFiles = {
+  'ember-cli-build.js': `const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const { compatBuild } = require('@embroider/compat');
 module.exports = async function (defaults) {
   const { buildOnce } = await import('@embroider/vite');
   let app = new EmberApp(defaults);
   return compatBuild(app, buildOnce);
-};`;
-}
+};`,
+  'config/optional-features.json': JSON.stringify({
+    'application-template-wrapper': false,
+    'default-async-observers': true,
+    'jquery-integration': false,
+    'template-only-glimmer-components': true,
+    'no-implicit-route-model': true,
+  }),
+};
 
-function compatEmberScenario(name, emberVersion) {
-  return {
-    name,
-    npm: {
-      devDependencies: {
-        'ember-source': emberVersion,
-        '@embroider/compat': '^4.0.3',
-        'ember-cli': '^5.12.0',
-        'ember-auto-import': '^2.10.0',
-        '@ember/optional-features': '^2.2.0',
-      },
-    },
-    env: {
-      ENABLE_COMPAT_BUILD: true,
-    },
-    files: {
-      'ember-cli-build.js': emberCliBuildJS(),
-      'config/optional-features.json': JSON.stringify({
-        'application-template-wrapper': false,
-        'default-async-observers': true,
-        'jquery-integration': false,
-        'template-only-glimmer-components': true,
-        'no-implicit-route-model': true,
-      }),
-    },
-  };
-}
+const compatDeps = {
+  '@embroider/compat': '^4.0.3',
+  'ember-cli': '^5.12.0',
+  'ember-auto-import': '^2.10.0',
+  '@ember/optional-features': '^2.2.0',
+};
