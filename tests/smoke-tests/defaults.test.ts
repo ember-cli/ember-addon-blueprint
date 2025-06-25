@@ -115,6 +115,11 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
 
         let testFixture = fixturify.readSync('./fixtures/rendering-tests');
         fixturify.writeSync(join(addonDir, 'tests/rendering'), testFixture);
+
+        fixturify.writeSync(
+          join(addonDir, 'tests/unit'),
+          fixturify.readSync('./fixtures/build-mode-tests'),
+        );
       });
 
       it('lint:fix', async () => {
