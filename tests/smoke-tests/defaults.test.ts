@@ -147,8 +147,8 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
         expect(testResult.exitCode).toEqual(0);
 
         expect(testResult.stdout).includes(
-          `# tests 2
-# pass  2
+          `# tests 3
+# pass  3
 # skip  0
 # todo  0
 # fail  0
