@@ -2,8 +2,8 @@
   "solution": {
     "@ember/addon-blueprint": {
       "impact": "patch",
-      "oldVersion": "0.8.0",
-      "newVersion": "0.8.1",
+      "oldVersion": "0.8.1",
+      "newVersion": "0.8.2",
       "tagName": "latest",
       "constraints": [
         {
@@ -14,5 +14,5 @@
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-06-25)\n\n* @ember/addon-blueprint 0.8.1 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#62](https://github.com/ember-cli/ember-addon-blueprint/pull/62) Add vite test mode ([@gossi](https://github.com/gossi))\n\n#### Committers: 1\n- Thomas Gossmann ([@gossi](https://github.com/gossi))\n"
+  "description": "## Release (2025-06-25)\n\n* @ember/addon-blueprint 0.8.2 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#64](https://github.com/ember-cli/ember-addon-blueprint/pull/64) Change test mode to development mode ([@gossi](https://github.com/gossi))\n\n#### Committers: 1\n- Thomas Gossmann ([@gossi](https://github.com/gossi))\n"
 }

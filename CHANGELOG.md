@@ -2,6 +2,17 @@
 
 ## Release (2025-06-25)
 
+* @ember/addon-blueprint 0.8.2 (patch)
+
+#### :bug: Bug Fix
+* `@ember/addon-blueprint`
+  * [#64](https://github.com/ember-cli/ember-addon-blueprint/pull/64) Change test mode to development mode ([@gossi](https://github.com/gossi))
+
+#### Committers: 1
+- Thomas Gossmann ([@gossi](https://github.com/gossi))
+
+## Release (2025-06-25)
+
 * @ember/addon-blueprint 0.8.1 (patch)
 
 #### :bug: Bug Fix
