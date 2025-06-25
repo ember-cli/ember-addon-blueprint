@@ -49,6 +49,26 @@ export async function createTmp() {
 }
 
 /**
+ * Returns a copy of the current process env with EMBER_, VITE_, and NODE_
+ * prefixed vars removed.
+ *
+ * Useful when spawning child processes with `extendEnv: false` so that
+ * vitest's NODE_ENV=test (and similar) doesn't leak into the child and
+ * interfere with the build-time / runtime macro mode detection.
+ */
+export function safeExecaEnv(): Record<string, string | undefined> {
+  let env = { ...process.env };
+
+  for (let key of Object.keys(env)) {
+    if (key.startsWith('EMBER_') || key.startsWith('VITE_') || key.startsWith('NODE_')) {
+      delete env[key];
+    }
+  }
+
+  return env;
+}
+
+/**
  * Abstraction for install, as the blueprint supports multiple package managers
  */
 export async function install({
