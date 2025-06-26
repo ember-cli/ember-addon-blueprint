@@ -115,6 +115,11 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
 
         let testFixture = fixturify.readSync('./fixtures/rendering-tests');
         fixturify.writeSync(join(addonDir, 'tests/rendering'), testFixture);
+
+        fixturify.writeSync(
+          join(addonDir, 'tests/unit'),
+          fixturify.readSync('./fixtures/build-mode-tests'),
+        );
       });
 
       it('lint:fix', async () => {
@@ -141,9 +146,11 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
 
         expect(testResult.exitCode).toEqual(0);
 
+        expect(testResult.stdout).includes('debug utils remain in the build: assert');
+        expect(testResult.stdout).includes('debug utils remain in the build: DEBUG');
         expect(testResult.stdout).includes(
-          `# tests 2
-# pass  2
+          `# tests 4
+# pass  4
 # skip  0
 # todo  0
 # fail  0
