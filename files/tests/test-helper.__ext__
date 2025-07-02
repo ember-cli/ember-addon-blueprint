@@ -7,12 +7,21 @@ class Router extends EmberRouter {
   rootURL = '/';
 }
 
+const registry = {
+  'test-app/router': { default: Router },
+  // add any custom services here
+  // example:
+  //   'test-app/services/store': { default: Store },
+  // and/or initializers:
+  //   'test-app/instance-initializers/foo': { default: Foo }
+  // 
+  // NOTE: when using (instance)initializers, you'll need https://github.com/ember-cli/ember-load-initializers/
+  //       and to call loadInitializers(TestApp, 'test-app', registry);
+}
+
 class TestApp extends EmberApp {
   modulePrefix = 'test-app';
-  Resolver = Resolver.withModules({
-    'test-app/router': { default: Router },
-    // add any custom services here
-  });
+  Resolver = Resolver.withModules(registry);
 }
 
 Router.map(function () {});
