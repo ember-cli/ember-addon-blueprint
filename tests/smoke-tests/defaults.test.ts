@@ -152,10 +152,20 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
         // It's important that we ensure that dist directory is empty for this test, because
         await fs.rm(join(addonDir, 'dist'), { recursive: true, force: true });
 
-        console.log('in vitest', process.env.NODE_ENV, process.env.CI);
+        let safeEnv = { ...process.env };
+        for (let key of Object.keys(safeEnv)) {
+          if (key.startsWith('EMBER_') || key.startsWith('VITE_') || key.startsWith('NODE_')) {
+            delete safeEnv[key];
+          }
+        }
+
         let testResult = await execa({
           cwd: addonDir,
           extendEnv: false,
+          // a modified env required with extendEnv, else we still inherit/merge the env of vitest
+          // which overrides our NODE_ENV from our .env.development file (read by vite)
+          // (because in-shell ENV vars override .env files)
+          env: safeEnv,
         })`${packageManager} run test`;
 
         expect(testResult.exitCode).toEqual(0);
