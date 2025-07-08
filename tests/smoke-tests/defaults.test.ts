@@ -163,8 +163,8 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
         expect(testResult.stdout).includes('debug utils remain in the build: assert');
         expect(testResult.stdout).includes('debug utils remain in the build: DEBUG');
         expect(testResult.stdout).includes(
-          `# tests 4
-# pass  4
+          `# tests 6
+# pass  6
 # skip  0
 # todo  0
 # fail  0
