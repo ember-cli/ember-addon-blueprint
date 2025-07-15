@@ -4,6 +4,7 @@
  * (and linting)
  */
 const { buildMacros } = require('@embroider/macros/babel');
+const debugMacros = require('babel-plugin-debug-macros');
 
 const {
   babelCompatSupport,
@@ -42,6 +43,22 @@ module.exports = {
       },
     ],
     ...(isCompat ? babelCompatSupport() : macros.babelMacros),
+    // Can be removed if @glimmer/env isn't used in this project's dependency graph.
+    [
+      debugMacros,
+      {
+        flags: [
+          {
+            source: '@glimmer/env',
+            flags: {
+              DEBUG: true,
+              CI: false,
+            },
+          },
+        ],
+      },
+      '@glimmer/env stripping',
+    ],
   ],
 
   generatorOpts: {
