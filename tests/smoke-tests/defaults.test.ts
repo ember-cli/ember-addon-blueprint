@@ -13,9 +13,11 @@ import {
   assertGeneratedCorrectly,
   dirContents,
   matchesFixture,
+  packageJsonAt,
   SUPPORTED_PACKAGE_MANAGERS,
 } from '../helpers.js';
 import { existsSync } from 'node:fs';
+import sortPackageJson from 'sort-package-json';
 
 /**
  * NOTE: tests run sequentially
@@ -106,6 +108,13 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       let { exitCode } = await execa({ cwd: addonDir })`${packageManager} run lint:fix`;
 
       expect(exitCode).toEqual(0);
+    });
+
+    it('has a sorted package.json', async () => {
+      const originalPackageJson = await packageJsonAt(addonDir);
+      const sortedPackageJson = await sortPackageJson(originalPackageJson);
+
+      expect(JSON.stringify(sortedPackageJson)).toEqual(JSON.stringify(originalPackageJson));
     });
 
     describe('with fixture', () => {
