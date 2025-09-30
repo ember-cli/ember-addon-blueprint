@@ -64,8 +64,8 @@ export default {
     addon.declarations(
       'declarations',
       <% if (pnpm) { %>`pnpm ember-tsc --declaration --project ${tsConfig}`,<% } else if (npm) 
-                   { %>`npm exec ember-tsc --declaration --project ${tsconfig}`,<% } else 
-                   { %>`npx @glint/ember-tsc --declaration --project ${tsconfig}`,<% } %>
+                   { %>`npm exec ember-tsc --declaration --project ${tsConfig}`,<% } else 
+                   { %>`npx @glint/ember-tsc --declaration --project ${tsConfig}`,<% } %>
     ),<% } %>
 
     // addons are allowed to contain imports of .css files, which we want rollup
