@@ -1,5 +1,26 @@
 # Changelog
 
+## Release (2025-09-30)
+
+* @ember/addon-blueprint 0.11.0 (minor)
+
+#### :rocket: Enhancement
+* `@ember/addon-blueprint`
+  * [#86](https://github.com/ember-cli/ember-addon-blueprint/pull/86) Update to stable Glint ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :bug: Bug Fix
+* `@ember/addon-blueprint`
+  * [#82](https://github.com/ember-cli/ember-addon-blueprint/pull/82) Make sure the package.json is sorted according to sort-package.json ([@BoussonKarel](https://github.com/BoussonKarel))
+
+#### :memo: Documentation
+* `@ember/addon-blueprint`
+  * [#81](https://github.com/ember-cli/ember-addon-blueprint/pull/81) Update Ember version in compat section in generated README file ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 3
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+- [@BoussonKarel](https://github.com/BoussonKarel)
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2025-09-09)
 
 * @ember/addon-blueprint 0.10.0 (minor)
