@@ -15,7 +15,7 @@ class TestApp extends EmberApp {
     './router': { default: Router },
     // add any custom services here
     // import.meta.glob('./services/*', { eager: true }),
-  }
+  };
 }
 
 Router.map(function () {});
