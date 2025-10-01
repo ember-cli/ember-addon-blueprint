@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-10-01)
+
+* @ember/addon-blueprint 0.11.1 (patch)
+
+#### :bug: Bug Fix
+* `@ember/addon-blueprint`
+  * [#87](https://github.com/ember-cli/ember-addon-blueprint/pull/87) Remove last remaining parts of glint v1 ([@mkszepp](https://github.com/mkszepp))
+
+#### Committers: 1
+- Markus Sanin ([@mkszepp](https://github.com/mkszepp))
+
 ## Release (2025-09-30)
 
 * @ember/addon-blueprint 0.11.0 (minor)
