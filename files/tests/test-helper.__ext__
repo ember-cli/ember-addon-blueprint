@@ -1,19 +1,21 @@
-import EmberApp from 'ember-strict-application-resolver';
 import EmberRouter from '@ember/routing/router';
 import * as QUnit from 'qunit';
 import { setApplication } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';
 import { start as qunitStart, setupEmberOnerrorValidation } from 'ember-qunit';
 
+import { App, docsAppRegistry } from '#dosc-app/app';
+
 class Router extends EmberRouter {
   location = 'none';
   rootURL = '/';
 }
 
-class TestApp extends EmberApp {
+class TestApp extends App {
   modules = {
-    './router': { default: Router },
-    // add any custom services here
+    ...docsAppRegistry,
+    './router': Router,
+    // add any overrides here
     // import.meta.glob('./services/*', { eager: true }),
   };
 }
