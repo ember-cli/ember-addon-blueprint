@@ -22,8 +22,8 @@
     "lint:hbs": "ember-template-lint . --no-error-on-unmatched-pattern",
     "lint:js": "eslint . --cache",
     "lint:hbs:fix": "ember-template-lint . --fix --no-error-on-unmatched-pattern",
-    "lint:js:fix": "eslint . --fix",<% if (typescript) { %>
-    "lint:types": "ember-tsc --noEmit",<% } %>
+    "lint:js:fix": "eslint . --fix<% if (typescript) { %>",
+    "lint:types": "ember-tsc --noEmit<% } %>",
     "start": "vite dev",
     "test": "vite build --mode=development --out-dir dist-tests && testem --file testem.cjs ci --port 0",
     "prepack": "rollup --config"
@@ -34,8 +34,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
-    "@babel/eslint-parser": "^7.25.1",<% if (typescript) { %>
-    "@babel/plugin-transform-typescript": "^7.25.2",<% } %>
+    "@babel/eslint-parser": "^7.25.1<% if (typescript) { %>",
+    "@babel/plugin-transform-typescript": "^7.25.2<% } %>",
     "@babel/runtime": "^7.25.6",
     "@ember/app-tsconfig": "^1.0.0",
     "@ember/library-tsconfig": "^1.0.0",
@@ -47,16 +47,16 @@
     "@embroider/macros": "^1.18.0",
     "@embroider/vite": "^1.1.5",
     "@eslint/js": "^9.17.0",
-    "@glimmer/component": "^2.0.0",<% if (typescript) { %>
+    "@glimmer/component": "^2.0.0<% if (typescript) { %>",
     "@glint/ember-tsc": "^1.0.3",
     "@glint/template": "^1.6.1",
-    "@glint/tsserver-plugin": "^2.0.0",<% } %>
-    "@rollup/plugin-babel": "^6.0.4",<% if (typescript) { %>
-    "@types/qunit": "^2.19.12",<% } %>
+    "@glint/tsserver-plugin": "^2.0.0<% } %>",
+    "@rollup/plugin-babel": "^6.0.4<% if (typescript) { %>",
+    "@types/qunit": "^2.19.12<% } %>",
     "babel-plugin-ember-template-compilation": "^2.2.5",
     "concurrently": "^9.0.1",
     "ember-qunit": "^9.0.2",
-    "ember-source": "^6.3.0",
+    "ember-source": "^6.7.0",
     "ember-strict-application-resolver": "^0.1.0",
     "ember-template-lint": "^7.9.0",
     "eslint": "^9.17.0",
@@ -70,9 +70,9 @@
     "qunit": "^2.24.1",
     "qunit-dom": "^3.4.0",
     "rollup": "^4.22.5",
-    "testem": "^3.15.1",<% if (typescript) { %>
+    "testem": "^3.15.1<% if (typescript) { %>",
     "typescript": "~5.8.3",
-    "typescript-eslint": "^8.19.1",<% } %>
+    "typescript-eslint": "^8.19.1<% } %>",
     "vite": "^7.1.9"
   },
   "ember": {
@@ -86,26 +86,16 @@
   "imports": {
     "#src/*": "./src/*"
   },
-  "exports": {<% if (typescript) { %>
+  "exports": {
     ".": {
-      "types": "./declarations/index.d.ts",
-      "default": "./dist/index.js"
+      "<% if (typescript) { %>types": "./declarations/index.d.ts",
+      "<% } %> default": "./dist/index.js"
     },
+    "./addon-main.js": "./addon-main.cjs",
     "./*.css": "./dist/*.css",
     "./*": {
-      "types": "./declarations/*.d.ts",
-      "default": "./dist/*.js"
-    },<% } else { %>
-    ".": "./dist/index.js",
-    "./*.css": "./dist/*.css",
-    "./*": "./dist/*.js",<% } %>
-    "./addon-main.js": "./addon-main.cjs"
-  }<% if (typescript) { %>,
-  "typesVersions": {
-    "*": {
-      "*": [
-        "declarations/*"
-      ]
+      "<% if (typescript) { %>types": "./declarations/*.d.ts",
+      "<% } %>default": "./dist/*.js"
     }
-  }<% } %>
+  }
 }
