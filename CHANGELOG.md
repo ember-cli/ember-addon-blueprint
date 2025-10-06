@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-10-06)
+
+* @ember/addon-blueprint 0.11.2 (patch)
+
+#### :bug: Bug Fix
+* `@ember/addon-blueprint`
+  * [#90](https://github.com/ember-cli/ember-addon-blueprint/pull/90) chore: remove `@glint/environment-ember-*` ([@aklkv](https://github.com/aklkv))
+
+#### Committers: 1
+- Alexey Kulakov ([@aklkv](https://github.com/aklkv))
+
 ## Release (2025-10-01)
 
 * @ember/addon-blueprint 0.11.1 (patch)
