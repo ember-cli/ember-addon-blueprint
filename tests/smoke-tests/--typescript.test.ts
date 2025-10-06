@@ -104,7 +104,7 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
 
         expect(
           await filesMatching('{dist,declarations}/**/*', addonDir),
-          `ensure we emit the correct files out of the box to the correct folders`,
+          `ensure we emit the correct files out of the box to the correct folders`
         ).toMatchInlineSnapshot(`
           [
             "dist/index.js",
@@ -124,10 +124,10 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
             "declarations/index.d.ts.map",
             "declarations/template-registry.d.ts",
             "declarations/template-registry.d.ts.map",
-            "declarations/components/another-gts.gts.d.ts",
-            "declarations/components/another-gts.gts.d.ts.map",
-            "declarations/components/template-import.gts.d.ts",
-            "declarations/components/template-import.gts.d.ts.map",
+            "declarations/components/another-gts.d.ts",
+            "declarations/components/another-gts.d.ts.map",
+            "declarations/components/template-import.d.ts",
+            "declarations/components/template-import.d.ts.map",
             "declarations/services/example.d.ts",
             "declarations/services/example.d.ts.map",
           ]
