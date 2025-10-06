@@ -104,7 +104,7 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
 
         expect(
           await filesMatching('{dist,declarations}/**/*', addonDir),
-          `ensure we emit the correct files out of the box to the correct folders`
+          `ensure we emit the correct files out of the box to the correct folders`,
         ).toMatchInlineSnapshot(`
           [
             "dist/index.js",
