@@ -2,6 +2,17 @@
 
 ## Release (2025-10-06)
 
+* @ember/addon-blueprint 0.12.0 (minor)
+
+#### :rocket: Enhancement
+* `@ember/addon-blueprint`
+  * [#73](https://github.com/ember-cli/ember-addon-blueprint/pull/73) Use strict application resolver ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## Release (2025-10-06)
+
 * @ember/addon-blueprint 0.11.2 (patch)
 
 #### :bug: Bug Fix
