@@ -2,6 +2,17 @@
 
 ## Release (2025-10-06)
 
+* @ember/addon-blueprint 0.13.0 (minor)
+
+#### :rocket: Enhancement
+* `@ember/addon-blueprint`
+  * [#93](https://github.com/ember-cli/ember-addon-blueprint/pull/93) Upgrade all dependencies ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## Release (2025-10-06)
+
 * @ember/addon-blueprint 0.12.0 (minor)
 
 #### :rocket: Enhancement
