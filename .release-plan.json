@@ -2,8 +2,8 @@
   "solution": {
     "@ember/addon-blueprint": {
       "impact": "patch",
-      "oldVersion": "0.11.0",
-      "newVersion": "0.11.1",
+      "oldVersion": "0.11.1",
+      "newVersion": "0.11.2",
       "tagName": "latest",
       "constraints": [
         {
@@ -14,5 +14,5 @@
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-10-01)\n\n* @ember/addon-blueprint 0.11.1 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#87](https://github.com/ember-cli/ember-addon-blueprint/pull/87) Remove last remaining parts of glint v1 ([@mkszepp](https://github.com/mkszepp))\n\n#### Committers: 1\n- Markus Sanin ([@mkszepp](https://github.com/mkszepp))\n"
+  "description": "## Release (2025-10-06)\n\n* @ember/addon-blueprint 0.11.2 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#90](https://github.com/ember-cli/ember-addon-blueprint/pull/90) chore: remove `@glint/environment-ember-*` ([@aklkv](https://github.com/aklkv))\n\n#### Committers: 1\n- Alexey Kulakov ([@aklkv](https://github.com/aklkv))\n"
 }
