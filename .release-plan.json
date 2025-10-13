@@ -1,18 +1,18 @@
 {
   "solution": {
     "@ember/addon-blueprint": {
-      "impact": "minor",
-      "oldVersion": "0.12.0",
-      "newVersion": "0.13.0",
+      "impact": "patch",
+      "oldVersion": "0.13.0",
+      "newVersion": "0.13.1",
       "tagName": "latest",
       "constraints": [
         {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
+          "impact": "patch",
+          "reason": "Appears in changelog section :bug: Bug Fix"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-10-06)\n\n* @ember/addon-blueprint 0.13.0 (minor)\n\n#### :rocket: Enhancement\n* `@ember/addon-blueprint`\n  * [#93](https://github.com/ember-cli/ember-addon-blueprint/pull/93) Upgrade all dependencies ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2025-10-13)\n\n* @ember/addon-blueprint 0.13.1 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#95](https://github.com/ember-cli/ember-addon-blueprint/pull/95) Remove extra space from package.exports default entry ([@phil-mellor](https://github.com/phil-mellor))\n\n#### Committers: 1\n- Phil Mellor ([@phil-mellor](https://github.com/phil-mellor))\n"
 }
