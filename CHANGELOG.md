@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-10-13)
+
+* @ember/addon-blueprint 0.13.1 (patch)
+
+#### :bug: Bug Fix
+* `@ember/addon-blueprint`
+  * [#95](https://github.com/ember-cli/ember-addon-blueprint/pull/95) Remove extra space from package.exports default entry ([@phil-mellor](https://github.com/phil-mellor))
+
+#### Committers: 1
+- Phil Mellor ([@phil-mellor](https://github.com/phil-mellor))
+
 ## Release (2025-10-06)
 
 * @ember/addon-blueprint 0.13.0 (minor)
