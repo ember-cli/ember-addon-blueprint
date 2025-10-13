@@ -25,6 +25,12 @@ export class App extends EmberApp {
         *     and includes non-services in the services directory.
         */
     ...import.meta.glob('./services/**/*', { eager: true }),
+    /**
+     * These imports are not magic, but we do require that all entries in the
+     * modules object match a ./[type]/[name] pattern.
+     *
+     * See: https://rfcs.emberjs.com/id/1132-default-strict-resolver
+     */
     ...import.meta.glob('./templates/**/*', { eager: true }),
   };
 }
