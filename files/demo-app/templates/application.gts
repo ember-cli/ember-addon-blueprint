@@ -1,5 +1,5 @@
 const greeting = 'hello';
 
 <template>
-  {{ greeting }}, world!
+  {{greeting}}, world!
 </template>
