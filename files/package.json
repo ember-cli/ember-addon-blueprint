@@ -84,7 +84,6 @@
     "main": "addon-main.cjs"
   },
   "imports": {
-    "#docs-app/*": "./docs-app/*",
     "#src/*": "./src/*"
   },
   "exports": {
