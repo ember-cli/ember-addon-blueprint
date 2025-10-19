@@ -2,6 +2,17 @@
 
 ## Release (2025-10-19)
 
+* @ember/addon-blueprint 0.14.1 (patch)
+
+#### :bug: Bug Fix
+* `@ember/addon-blueprint`
+  * [#99](https://github.com/ember-cli/ember-addon-blueprint/pull/99) Change import statement to use named import for App ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## Release (2025-10-19)
+
 * @ember/addon-blueprint 0.14.0 (minor)
 
 #### :rocket: Enhancement
