@@ -1,11 +1,15 @@
 {
   "solution": {
     "@ember/addon-blueprint": {
-      "impact": "patch",
-      "oldVersion": "0.13.0",
-      "newVersion": "0.13.1",
+      "impact": "minor",
+      "oldVersion": "0.13.1",
+      "newVersion": "0.14.0",
       "tagName": "latest",
       "constraints": [
+        {
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
+        },
         {
           "impact": "patch",
           "reason": "Appears in changelog section :bug: Bug Fix"
@@ -14,5 +18,5 @@
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-10-13)\n\n* @ember/addon-blueprint 0.13.1 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#95](https://github.com/ember-cli/ember-addon-blueprint/pull/95) Remove extra space from package.exports default entry ([@phil-mellor](https://github.com/phil-mellor))\n\n#### Committers: 1\n- Phil Mellor ([@phil-mellor](https://github.com/phil-mellor))\n"
+  "description": "## Release (2025-10-19)\n\n* @ember/addon-blueprint 0.14.0 (minor)\n\n#### :rocket: Enhancement\n* `@ember/addon-blueprint`\n  * [#89](https://github.com/ember-cli/ember-addon-blueprint/pull/89) add a \"Demo App\" ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#98](https://github.com/ember-cli/ember-addon-blueprint/pull/98) Fix typos ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }
