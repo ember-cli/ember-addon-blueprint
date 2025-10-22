@@ -76,6 +76,7 @@
     "typescript-eslint": "^8.19.1<% } %>",
     "vite": "^7.1.9"
   },
+  "packageManager": "<%= packageManager %>@<%= pnpm ? '10.19.0' : npm ? '11.6.2' : 'latest' %>",
   "ember": {
     "edition": "octane"
   },
