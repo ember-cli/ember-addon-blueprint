@@ -48,7 +48,6 @@ jobs:
       # For the Try Scenarios
       - id: set-matrix
         run: |
-
           echo "matrix=$(npx @embroider/try list)" >> $GITHUB_OUTPUT
 
   floating:
@@ -90,6 +89,5 @@ jobs:
         run: npm install --no-package-lock
       - name: Run Tests
         run: |
-
           npm test
         env: ${{ matrix.env }}
