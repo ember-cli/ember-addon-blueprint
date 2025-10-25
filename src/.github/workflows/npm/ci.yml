@@ -83,7 +83,6 @@ jobs:
           cache: npm
       - name: Apply Scenario
         run: |
-
           npx @embroider/try apply ${{ matrix.name }}
       - name: Install Dependencies
         run: npm install --no-package-lock
