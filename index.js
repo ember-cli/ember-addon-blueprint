@@ -1,5 +1,7 @@
 'use strict';
 
+const { readFileSync } = require('fs');
+const { join } = require('path');
 const { sortPackageJson } = require('sort-package-json');
 
 let date = new Date();
@@ -10,11 +12,24 @@ function stringifyAndNormalize(contents) {
   return `${JSON.stringify(contents, null, 2)}\n`;
 }
 
+const workflows = join(__dirname, 'src/.github/workflows/');
+
 const replacers = {
-  'package.json'(content) {
+  '.github/workflows/ci.yml'(templateVariables) {
+    let sourcePath = join(workflows, templateVariables.packageManager, 'ci.yml');
+
+    return readFileSync(sourcePath);
+  },
+  '.github/workflows/push-dist.yml'(templateVariables) {
+    let sourcePath = join(workflows, templateVariables.packageManager, 'push-dist.yml');
+    
+    return readFileSync(sourcePath);
+  },
+  'package.json'(_templateVariables, content) {
     return this.updatePackageJson(content);
   },
 };
+
 
 module.exports = {
   description,
@@ -93,11 +108,11 @@ module.exports = {
    *     _js_eslint.config.mjs is deleted
    *     _ts_eslint.config.mjs is renamed to eslint.config.mjs
    */
-  buildFileInfo(_intoDir, _templateVariables, file, _commandOptions) {
+  buildFileInfo(_intoDir, templateVariables, file, _commandOptions) {
     let fileInfo = this._super.buildFileInfo.apply(this, arguments);
 
     if (file in replacers) {
-      fileInfo.replacer = replacers[file].bind(this);
+      fileInfo.replacer = replacers[file].bind(this, templateVariables);
     }
 
     return fileInfo;
