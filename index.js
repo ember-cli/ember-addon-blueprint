@@ -22,14 +22,13 @@ const replacers = {
   },
   '.github/workflows/push-dist.yml'(templateVariables) {
     let sourcePath = join(workflows, templateVariables.packageManager, 'push-dist.yml');
-    
+
     return readFileSync(sourcePath);
   },
   'package.json'(_templateVariables, content) {
     return this.updatePackageJson(content);
   },
 };
-
 
 module.exports = {
   description,
