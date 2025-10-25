@@ -48,8 +48,7 @@ jobs:
       # For the Try Scenarios
       - id: set-matrix
         run: |
-          
-           echo "matrix=$(npx @embroider/try list)" >> $GITHUB_OUTPUT
+          echo "matrix=$(npx @embroider/try list)" >> $GITHUB_OUTPUT
 
   floating:
     name: "Floating Dependencies"
@@ -84,12 +83,10 @@ jobs:
           cache: npm
       - name: Apply Scenario
         run: |
-          
-           npx @embroider/try apply ${{ matrix.name }}
+          npx @embroider/try apply ${{ matrix.name }}
       - name: Install Dependencies
         run: npm install --no-package-lock
       - name: Run Tests
         run: |
-          
           npm test
         env: ${{ matrix.env }}

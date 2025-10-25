@@ -50,8 +50,7 @@ jobs:
       # For the Try Scenarios
       - id: set-matrix
         run: |
-           echo "matrix=$(pnpm -s dlx @embroider/try list)" >> $GITHUB_OUTPUT
-          
+          echo "matrix=$(pnpm -s dlx @embroider/try list)" >> $GITHUB_OUTPUT
 
   floating:
     name: "Floating Dependencies"
@@ -88,12 +87,12 @@ jobs:
           cache: pnpm
       - name: Apply Scenario
         run: |
-           pnpm dlx @embroider/try apply ${{ matrix.name }}
-          
+          pnpm dlx @embroider/try apply ${{ matrix.name }}
+
       - name: Install Dependencies
         run: pnpm install --no-lockfile
       - name: Run Tests
         run: |
           pnpm test
-          
+
         env: ${{ matrix.env }}
