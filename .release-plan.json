@@ -2,8 +2,8 @@
   "solution": {
     "@ember/addon-blueprint": {
       "impact": "patch",
-      "oldVersion": "0.14.0",
-      "newVersion": "0.14.1",
+      "oldVersion": "0.14.1",
+      "newVersion": "0.14.2",
       "tagName": "latest",
       "constraints": [
         {
@@ -14,5 +14,5 @@
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-10-19)\n\n* @ember/addon-blueprint 0.14.1 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#99](https://github.com/ember-cli/ember-addon-blueprint/pull/99) Change import statement to use named import for App ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2025-10-26)\n\n* @ember/addon-blueprint 0.14.2 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#104](https://github.com/ember-cli/ember-addon-blueprint/pull/104) Remove alias resolution from vite.config.mjs ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#101](https://github.com/ember-cli/ember-addon-blueprint/pull/101) Use `cjs` extension for `ember-cli-build` file ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 2\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }

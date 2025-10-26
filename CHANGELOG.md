@@ -1,5 +1,18 @@
 # Changelog
 
+## Release (2025-10-26)
+
+* @ember/addon-blueprint 0.14.2 (patch)
+
+#### :bug: Bug Fix
+* `@ember/addon-blueprint`
+  * [#104](https://github.com/ember-cli/ember-addon-blueprint/pull/104) Remove alias resolution from vite.config.mjs ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#101](https://github.com/ember-cli/ember-addon-blueprint/pull/101) Use `cjs` extension for `ember-cli-build` file ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 2
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2025-10-19)
 
 * @ember/addon-blueprint 0.14.1 (patch)
