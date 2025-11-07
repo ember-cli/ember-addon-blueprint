@@ -14,6 +14,7 @@
  */
 import babelParser from '@babel/eslint-parser';
 import js from '@eslint/js';
+import { defineConfig, globalIgnores } from 'eslint/config';
 import prettier from 'eslint-config-prettier';
 import ember from 'eslint-plugin-ember/recommended';
 import importPlugin from 'eslint-plugin-import';
@@ -32,26 +33,13 @@ const tsParserOptions = {
   tsconfigRootDir: import.meta.dirname,
 };
 <% } %>
-const config = [
+export default defineConfig([
+  globalIgnores(['dist/', 'dist-*/', 'declarations/', 'coverage/', '!**/.*']),
   js.configs.recommended,
   prettier,
   ember.configs.base,
   ember.configs.gjs,<% if (typescript) { %>
   ember.configs.gts,<% } %>
-  /**
-   * Ignores must be in their own object
-   * https://eslint.org/docs/latest/use/configure/ignore
-   */
-  {
-    ignores: [
-      'dist/',
-      'dist-*/',
-      'declarations/',
-      'node_modules/',
-      'coverage/',
-      '!**/.*',
-    ],
-  },
   /**
    * https://eslint.org/docs/latest/use/configure/configuration-files#configuring-linter-options
    */
@@ -80,6 +68,9 @@ const config = [
     languageOptions: {
       parser: ember.parser,
       parserOptions: tsParserOptions,
+      globals: {
+        ...globals.browser,
+      },
     },
     extends: [...ts.configs.recommendedTypeChecked, ember.configs.gts],
   },<% } %>
@@ -97,12 +88,7 @@ const config = [
    * CJS node files
    */
   {
-    files: [
-      '**/*.cjs',
-      '.prettierrc.cjs',
-      '.template-lintrc.cjs',
-      'addon-main.cjs',
-    ],
+    files: ['**/*.cjs'],
     plugins: {
       n,
     },
@@ -133,7 +119,4 @@ const config = [
       },
     },
   },
-];
-<% if (typescript) { %>
-export default ts.config(...config);<% } else { %>
-export default config;<% } %>
+]);
