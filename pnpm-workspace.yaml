@@ -1,3 +1,5 @@
+autoInstallPeers: false
+resolvePeersFromWorkspaceRoot: false
 packages:
   - '.'
   - 'tests'

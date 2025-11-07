@@ -63,7 +63,7 @@ describe.skip('custom locations', () => {
   it('ignores root files', async () => {
     expect(
       fixturify.readSync(cwd, {
-        ignore: ['addons', 'tests', 'node_modules', 'pnpm-lock.yaml', '.npmrc'],
+        ignore: ['addons', 'tests', 'node_modules', 'pnpm-lock.yaml', 'pnpm-workspace.yaml'],
       }),
       'root files have not been touched',
     ).toEqual(rootFiles);

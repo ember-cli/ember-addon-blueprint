@@ -53,9 +53,11 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       })`${localEmberCli} addon ${addonName} -b ${blueprintPath} --skip-npm --prefer-local true --${packageManager} --typescript`;
       // Have to use --force because NPM is *stricter* when you use tags in package.json
       // than pnpm (in that tags don't match any specified stable version)
-      await execa({
-        cwd: addonDir,
-      })`${packageManager} install ${packageManager === 'npm' ? '--force' : ''}`;
+      if (packageManager === 'npm') {
+        await execa({ cwd: addonDir })`npm install --force`;
+      } else if (packageManager === 'pnpm') {
+        await execa({ cwd: addonDir })`pnpm install`;
+      }
     });
 
     it('was generated correctly', async () => {

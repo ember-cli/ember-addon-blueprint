@@ -62,6 +62,12 @@ module.exports = {
       files = files.filter((file) => file.indexOf('.github') < 0);
     }
 
+    if (!isPnpm(options)) {
+      let ignoredFiles = ['pnpm-workspace.yaml'];
+
+      files = files.filter((filename) => !ignoredFiles.includes(filename));
+    }
+
     if (!options.typescript) {
       let ignoredFiles = ['tsconfig.json'];
 
