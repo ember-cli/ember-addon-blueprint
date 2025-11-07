@@ -20,12 +20,15 @@ describe.skip('--addon-only', () => {
   it('has all the files', async () => {
     let rootContents = await dirContents(helper.projectRoot);
 
-    await matchesFixture('.npmrc', { cwd: helper.projectRoot, scenario: 'pnpm-addon-only' });
+    await matchesFixture('pnpm-workspace.yaml', {
+      cwd: helper.projectRoot,
+      scenario: 'pnpm-addon-only',
+    });
 
     expect(rootContents).to.include('.editorconfig');
     expect(rootContents).to.include('eslint.config.mjs');
     expect(rootContents).to.include('.gitignore');
-    expect(rootContents).to.include('.npmrc');
+    expect(rootContents).to.include('pnpm-workspace.yaml');
     expect(rootContents).to.include('.prettierignore');
     expect(rootContents).to.include('.prettierrc.cjs');
     expect(rootContents).to.include('.template-lintrc.cjs');

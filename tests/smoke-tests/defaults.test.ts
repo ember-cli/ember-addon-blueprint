@@ -73,7 +73,7 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
             cwd: addonDir,
             scenario: 'pnpm',
           });
-          await matchesFixture('.npmrc', {
+          await matchesFixture('pnpm-workspace.yaml', {
             cwd: addonDir,
             scenario: 'pnpm',
           });
