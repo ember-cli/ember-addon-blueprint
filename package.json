@@ -1,6 +1,6 @@
 {
   "name": "@ember/addon-blueprint",
-  "version": "0.14.2",
+  "version": "0.15.0",
   "description": "Blueprint for scaffolding ember v2 addons",
   "keywords": [
     "ember-blueprint"

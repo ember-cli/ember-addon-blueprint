@@ -1,5 +1,17 @@
 # Changelog
 
+## Release (2025-11-07)
+
+* @ember/addon-blueprint 0.15.0 (minor)
+
+#### :rocket: Enhancement
+* `@ember/addon-blueprint`
+  * [#111](https://github.com/ember-cli/ember-addon-blueprint/pull/111) Use `pnpm-workspace.yaml` instead of `.npmrc` ([@bertdeblock](https://github.com/bertdeblock))
+  * [#110](https://github.com/ember-cli/ember-addon-blueprint/pull/110) Update generated ESLint config ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2025-10-26)
 
 * @ember/addon-blueprint 0.14.2 (patch)
