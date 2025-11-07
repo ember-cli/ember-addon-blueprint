@@ -1,18 +1,18 @@
 {
   "solution": {
     "@ember/addon-blueprint": {
-      "impact": "patch",
-      "oldVersion": "0.14.1",
-      "newVersion": "0.14.2",
+      "impact": "minor",
+      "oldVersion": "0.14.2",
+      "newVersion": "0.15.0",
       "tagName": "latest",
       "constraints": [
         {
-          "impact": "patch",
-          "reason": "Appears in changelog section :bug: Bug Fix"
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-10-26)\n\n* @ember/addon-blueprint 0.14.2 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#104](https://github.com/ember-cli/ember-addon-blueprint/pull/104) Remove alias resolution from vite.config.mjs ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#101](https://github.com/ember-cli/ember-addon-blueprint/pull/101) Use `cjs` extension for `ember-cli-build` file ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 2\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2025-11-07)\n\n* @ember/addon-blueprint 0.15.0 (minor)\n\n#### :rocket: Enhancement\n* `@ember/addon-blueprint`\n  * [#111](https://github.com/ember-cli/ember-addon-blueprint/pull/111) Use `pnpm-workspace.yaml` instead of `.npmrc` ([@bertdeblock](https://github.com/bertdeblock))\n  * [#110](https://github.com/ember-cli/ember-addon-blueprint/pull/110) Update generated ESLint config ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
 }
