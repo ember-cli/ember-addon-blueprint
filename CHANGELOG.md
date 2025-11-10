@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-11-10)
+
+* @ember/addon-blueprint 0.15.1 (patch)
+
+#### :bug: Bug Fix
+* `@ember/addon-blueprint`
+  * [#113](https://github.com/ember-cli/ember-addon-blueprint/pull/113) Update router assignment ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2025-11-07)
 
 * @ember/addon-blueprint 0.15.0 (minor)
