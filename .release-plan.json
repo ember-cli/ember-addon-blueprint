@@ -1,18 +1,18 @@
 {
   "solution": {
     "@ember/addon-blueprint": {
-      "impact": "minor",
-      "oldVersion": "0.14.2",
-      "newVersion": "0.15.0",
+      "impact": "patch",
+      "oldVersion": "0.15.0",
+      "newVersion": "0.15.1",
       "tagName": "latest",
       "constraints": [
         {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
+          "impact": "patch",
+          "reason": "Appears in changelog section :bug: Bug Fix"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-11-07)\n\n* @ember/addon-blueprint 0.15.0 (minor)\n\n#### :rocket: Enhancement\n* `@ember/addon-blueprint`\n  * [#111](https://github.com/ember-cli/ember-addon-blueprint/pull/111) Use `pnpm-workspace.yaml` instead of `.npmrc` ([@bertdeblock](https://github.com/bertdeblock))\n  * [#110](https://github.com/ember-cli/ember-addon-blueprint/pull/110) Update generated ESLint config ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
+  "description": "## Release (2025-11-10)\n\n* @ember/addon-blueprint 0.15.1 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#113](https://github.com/ember-cli/ember-addon-blueprint/pull/113) Update router assignment ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
 }
