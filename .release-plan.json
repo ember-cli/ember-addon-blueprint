@@ -2,8 +2,8 @@
   "solution": {
     "@ember/addon-blueprint": {
       "impact": "patch",
-      "oldVersion": "0.15.0",
-      "newVersion": "0.15.1",
+      "oldVersion": "0.15.1",
+      "newVersion": "0.15.2",
       "tagName": "latest",
       "constraints": [
         {
@@ -14,5 +14,5 @@
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-11-10)\n\n* @ember/addon-blueprint 0.15.1 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#113](https://github.com/ember-cli/ember-addon-blueprint/pull/113) Update router assignment ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
+  "description": "## Release (2025-11-11)\n\n* @ember/addon-blueprint 0.15.2 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#115](https://github.com/ember-cli/ember-addon-blueprint/pull/115) eslint: if projectService is used, project should be removed ([@evoactivity](https://github.com/evoactivity))\n\n#### Committers: 1\n- Liam Potter ([@evoactivity](https://github.com/evoactivity))\n"
 }

@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-11-11)
+
+* @ember/addon-blueprint 0.15.2 (patch)
+
+#### :bug: Bug Fix
+* `@ember/addon-blueprint`
+  * [#115](https://github.com/ember-cli/ember-addon-blueprint/pull/115) eslint: if projectService is used, project should be removed ([@evoactivity](https://github.com/evoactivity))
+
+#### Committers: 1
+- Liam Potter ([@evoactivity](https://github.com/evoactivity))
+
 ## Release (2025-11-10)
 
 * @ember/addon-blueprint 0.15.1 (patch)
