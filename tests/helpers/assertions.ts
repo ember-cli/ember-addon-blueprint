@@ -47,7 +47,7 @@ export async function assertGeneratedCorrectly({
   }
 
   if (!existingMonorepo) {
-    await matchesFixture('.prettierrc.cjs', { cwd: projectRoot });
+    await matchesFixture('.prettierrc.mjs', { cwd: projectRoot });
 
     await assertCorrectECUJson({
       projectRoot,

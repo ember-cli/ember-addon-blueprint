@@ -15,7 +15,7 @@ import {
 } from '../../helpers.js';
 
 let commonFixtures = {
-  '.prettierrc.cjs': await readFixture('.prettierrc.cjs'),
+  '.prettierrc.mjs': await readFixture('.prettierrc.mjs'),
 };
 
 for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
