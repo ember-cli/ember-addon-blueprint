@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-11-21)
+
+* @ember/addon-blueprint 0.16.0 (minor)
+
+#### :rocket: Enhancement
+* `@ember/addon-blueprint`
+  * [#117](https://github.com/ember-cli/ember-addon-blueprint/pull/117) Use `.mjs` for ember-template-lint and Prettier config files ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2025-11-11)
 
 * @ember/addon-blueprint 0.15.2 (patch)
