@@ -1,18 +1,18 @@
 {
   "solution": {
     "@ember/addon-blueprint": {
-      "impact": "patch",
-      "oldVersion": "0.15.1",
-      "newVersion": "0.15.2",
+      "impact": "minor",
+      "oldVersion": "0.15.2",
+      "newVersion": "0.16.0",
       "tagName": "latest",
       "constraints": [
         {
-          "impact": "patch",
-          "reason": "Appears in changelog section :bug: Bug Fix"
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-11-11)\n\n* @ember/addon-blueprint 0.15.2 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#115](https://github.com/ember-cli/ember-addon-blueprint/pull/115) eslint: if projectService is used, project should be removed ([@evoactivity](https://github.com/evoactivity))\n\n#### Committers: 1\n- Liam Potter ([@evoactivity](https://github.com/evoactivity))\n"
+  "description": "## Release (2025-11-21)\n\n* @ember/addon-blueprint 0.16.0 (minor)\n\n#### :rocket: Enhancement\n* `@ember/addon-blueprint`\n  * [#117](https://github.com/ember-cli/ember-addon-blueprint/pull/117) Use `.mjs` for ember-template-lint and Prettier config files ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
 }
