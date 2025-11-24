@@ -97,6 +97,8 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
         ).toMatchInlineSnapshot(`
           [
             "src/index.ts",
+            "src/lint-test-gts.gts",
+            "src/lint-test-ts.ts",
             "src/template-registry.ts",
             "src/components/another-gts.gts",
             "src/components/template-import.gts",
@@ -111,6 +113,10 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
           [
             "dist/index.js",
             "dist/index.js.map",
+            "dist/lint-test-gts.js",
+            "dist/lint-test-gts.js.map",
+            "dist/lint-test-ts.js",
+            "dist/lint-test-ts.js.map",
             "dist/template-registry.js",
             "dist/template-registry.js.map",
             "dist/components/another-gts.js",
@@ -124,6 +130,10 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
             "dist/_app_/services/example.js",
             "declarations/index.d.ts",
             "declarations/index.d.ts.map",
+            "declarations/lint-test-gts.d.ts",
+            "declarations/lint-test-gts.d.ts.map",
+            "declarations/lint-test-ts.d.ts",
+            "declarations/lint-test-ts.d.ts.map",
             "declarations/template-registry.d.ts",
             "declarations/template-registry.d.ts.map",
             "declarations/components/another-gts.d.ts",
