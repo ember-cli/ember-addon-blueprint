@@ -1,5 +1,19 @@
 # Changelog
 
+## Release (2025-12-06)
+
+* @ember/addon-blueprint 0.16.1 (patch)
+
+#### :bug: Bug Fix
+* `@ember/addon-blueprint`
+  * [#120](https://github.com/ember-cli/ember-addon-blueprint/pull/120) Apply `typescript-eslint`'s recommended config to gts files ([@bendemboski](https://github.com/bendemboski))
+  * [#121](https://github.com/ember-cli/ember-addon-blueprint/pull/121) Update ember-page-title dependency to version 9.0.3 ([@evoactivity](https://github.com/evoactivity))
+  * [#123](https://github.com/ember-cli/ember-addon-blueprint/pull/123) Include src in published files ([@evoactivity](https://github.com/evoactivity))
+
+#### Committers: 2
+- Ben Demboski ([@bendemboski](https://github.com/bendemboski))
+- Liam Potter ([@evoactivity](https://github.com/evoactivity))
+
 ## Release (2025-11-21)
 
 * @ember/addon-blueprint 0.16.0 (minor)
