@@ -1,18 +1,18 @@
 {
   "solution": {
     "@ember/addon-blueprint": {
-      "impact": "minor",
-      "oldVersion": "0.15.2",
-      "newVersion": "0.16.0",
+      "impact": "patch",
+      "oldVersion": "0.16.0",
+      "newVersion": "0.16.1",
       "tagName": "latest",
       "constraints": [
         {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
+          "impact": "patch",
+          "reason": "Appears in changelog section :bug: Bug Fix"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-11-21)\n\n* @ember/addon-blueprint 0.16.0 (minor)\n\n#### :rocket: Enhancement\n* `@ember/addon-blueprint`\n  * [#117](https://github.com/ember-cli/ember-addon-blueprint/pull/117) Use `.mjs` for ember-template-lint and Prettier config files ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
+  "description": "## Release (2025-12-06)\n\n* @ember/addon-blueprint 0.16.1 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#120](https://github.com/ember-cli/ember-addon-blueprint/pull/120) Apply `typescript-eslint`'s recommended config to gts files ([@bendemboski](https://github.com/bendemboski))\n  * [#121](https://github.com/ember-cli/ember-addon-blueprint/pull/121) Update ember-page-title dependency to version 9.0.3 ([@evoactivity](https://github.com/evoactivity))\n  * [#123](https://github.com/ember-cli/ember-addon-blueprint/pull/123) Include src in published files ([@evoactivity](https://github.com/evoactivity))\n\n#### Committers: 2\n- Ben Demboski ([@bendemboski](https://github.com/bendemboski))\n- Liam Potter ([@evoactivity](https://github.com/evoactivity))\n"
 }
