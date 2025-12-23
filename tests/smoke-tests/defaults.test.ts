@@ -180,7 +180,9 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
         expect(testResult.exitCode).toEqual(0);
 
         expect(testResult.stdout).includes('debug utils remain in the build: assert');
-        expect(testResult.stdout).includes('debug utils remain in the build: DEBUG');
+        expect(testResult.stdout).includes(
+          'debug utils remain in the build > not supported: DEBUG',
+        );
         expect(testResult.stdout).includes(
           `# tests 6
 # pass  6
