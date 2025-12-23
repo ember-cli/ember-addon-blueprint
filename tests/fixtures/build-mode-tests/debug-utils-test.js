@@ -10,15 +10,6 @@ module('debug utils remain in the build', function () {
     qAssert.throws(() => {
       assert('should throw');
     }, /should throw/, `The error "should throw" is thrown`);
-
-  });
-
-  test('DEBUG', function (assert) {
-    if (DEBUG) {
-      assert.step('DEBUG');
-    }
-
-    assert.verifySteps(['DEBUG']);
   });
 
   test('isTesting', function (assert) {
@@ -27,5 +18,16 @@ module('debug utils remain in the build', function () {
 
   test('isDevelopingApp', function (assert) {
     assert.strictEqual(isDevelopingApp(), true, `isDevelopingApp() === true`);
+  });
+
+
+  module('not supported', function () {
+    test('DEBUG', function (assert) {
+      if (DEBUG) {
+        assert.step('DEBUG');
+      }
+
+      assert.verifySteps([]);
+    });
   });
 });

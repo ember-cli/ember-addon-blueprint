@@ -22,8 +22,11 @@ class TestApp extends EmberApp {
 Router.map(function () {});
 
 export function start() {
-  const config = getGlobalConfig()['@embroider/macros'];
-  if (config) config.isTesting = true;
+  const theMacrosGlobal = getGlobalConfig();
+
+  theMacrosGlobal['@embroider/macros'] ||= {};
+  theMacrosGlobal['@embroider/macros'].isTesting ||= true;
+
   setApplication(
     TestApp.create({
       autoboot: false,
