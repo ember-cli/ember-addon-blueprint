@@ -14,7 +14,7 @@
   "scripts": {
     "lint": "prettier --check .",
     "format": "prettier --write .",
-    "new:addon": "pnpm dlx ember-cli@latest addon my-addon --blueprint ."
+    "new:addon": "rm -rf my-addon; pnpm dlx ember-cli@latest addon my-addon --blueprint ."
   },
   "devDependencies": {
     "prettier": "^3.5.3",
