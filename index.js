@@ -42,6 +42,7 @@ module.exports = {
       yarn: false,
       pnpm: isPnpm(options),
       npm: isNpm(options),
+      runScript: isPnpm(options) ? 'pnpm' : 'npm run',
       typescript: options.typescript,
       ext: options.typescript ? 'ts' : 'js',
       blueprint: 'addon',

@@ -25,6 +25,7 @@
     "lint:hbs:fix": "ember-template-lint . --fix --no-error-on-unmatched-pattern",
     "lint:js:fix": "eslint . --fix<% if (typescript) { %>",
     "lint:types": "ember-tsc --noEmit<% } %>",
+    "lint:publish": "<%= runScript %> build && publint run --level error",
     "start": "vite dev",
     "test": "vite build --mode=development --out-dir dist-tests && testem --file testem.cjs ci --port 0",
     "prepack": "rollup --config"
@@ -69,6 +70,7 @@
     "globals": "^16.1.0",
     "prettier": "^3.4.2",
     "prettier-plugin-ember-template-tag": "^2.0.4",
+    "publint": "^0.3.16",
     "qunit": "^2.24.1",
     "qunit-dom": "^3.4.0",
     "rollup": "^4.22.5",

@@ -13,7 +13,8 @@
   "author": "",
   "scripts": {
     "lint": "prettier --check .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "new:addon": "rm -rf my-addon; pnpm dlx ember-cli@latest addon my-addon --blueprint ."
   },
   "devDependencies": {
     "prettier": "^3.5.3",
