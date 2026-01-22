@@ -1,5 +1,21 @@
 # Changelog
 
+## Release (2026-01-22)
+
+* @ember/addon-blueprint 0.17.0 (minor)
+
+#### :rocket: Enhancement
+* `@ember/addon-blueprint`
+  * [#127](https://github.com/ember-cli/ember-addon-blueprint/pull/127) Add publint ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :bug: Bug Fix
+* `@ember/addon-blueprint`
+  * [#130](https://github.com/ember-cli/ember-addon-blueprint/pull/130) bump babel-plugin-ember-template-compilation to version 4 in order to clear deprecation warning ([@void-mAlex](https://github.com/void-mAlex))
+
+#### Committers: 2
+- Alex ([@void-mAlex](https://github.com/void-mAlex))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2025-12-06)
 
 * @ember/addon-blueprint 0.16.1 (patch)
