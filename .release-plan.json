@@ -1,11 +1,15 @@
 {
   "solution": {
     "@ember/addon-blueprint": {
-      "impact": "patch",
-      "oldVersion": "0.16.0",
-      "newVersion": "0.16.1",
+      "impact": "minor",
+      "oldVersion": "0.16.1",
+      "newVersion": "0.17.0",
       "tagName": "latest",
       "constraints": [
+        {
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
+        },
         {
           "impact": "patch",
           "reason": "Appears in changelog section :bug: Bug Fix"
@@ -14,5 +18,5 @@
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-12-06)\n\n* @ember/addon-blueprint 0.16.1 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#120](https://github.com/ember-cli/ember-addon-blueprint/pull/120) Apply `typescript-eslint`'s recommended config to gts files ([@bendemboski](https://github.com/bendemboski))\n  * [#121](https://github.com/ember-cli/ember-addon-blueprint/pull/121) Update ember-page-title dependency to version 9.0.3 ([@evoactivity](https://github.com/evoactivity))\n  * [#123](https://github.com/ember-cli/ember-addon-blueprint/pull/123) Include src in published files ([@evoactivity](https://github.com/evoactivity))\n\n#### Committers: 2\n- Ben Demboski ([@bendemboski](https://github.com/bendemboski))\n- Liam Potter ([@evoactivity](https://github.com/evoactivity))\n"
+  "description": "## Release (2026-01-22)\n\n* @ember/addon-blueprint 0.17.0 (minor)\n\n#### :rocket: Enhancement\n* `@ember/addon-blueprint`\n  * [#127](https://github.com/ember-cli/ember-addon-blueprint/pull/127) Add publint ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#130](https://github.com/ember-cli/ember-addon-blueprint/pull/130) bump babel-plugin-ember-template-compilation to version 4 in order to clear deprecation warning ([@void-mAlex](https://github.com/void-mAlex))\n\n#### Committers: 2\n- Alex ([@void-mAlex](https://github.com/void-mAlex))\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }
