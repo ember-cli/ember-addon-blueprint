@@ -46,7 +46,7 @@
     "@embroider/addon-dev": "^8.1.0",
     "@embroider/compat": "^4.1.0",
     "@embroider/core": "^4.1.0",
-    "@embroider/macros": "^1.18.0",
+    "@embroider/macros": "^1.20.0",
     "@embroider/vite": "^1.1.5",
     "@eslint/js": "^9.17.0",
     "@glimmer/component": "^2.0.0<% if (typescript) { %>",
