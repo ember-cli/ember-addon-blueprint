@@ -5,12 +5,7 @@ import fixturify from 'fixturify';
 import { execa } from 'execa';
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
-import {
-  assertGeneratedCorrectly,
-  dirContents,
-  filesMatching,
-  SUPPORTED_PACKAGE_MANAGERS,
-} from '../helpers.js';
+import { assertGeneratedCorrectly, filesMatching, SUPPORTED_PACKAGE_MANAGERS } from '../helpers.js';
 const blueprintPath = path.join(__dirname, '../..');
 let localEmberCli = require.resolve('ember-cli/bin/ember');
 
@@ -92,56 +87,56 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
         await commandSucceeds(`${packageManager} run build`);
 
         expect(
-          await filesMatching('src/**', addonDir),
+          (await filesMatching('src/**', addonDir)).sort(),
           `ensure we don't pollute the src dir with declarations and emit the js and .d.ts to the correct folders -- this should be the same as the input files (no change from the fixture + default files)`,
         ).toMatchInlineSnapshot(`
           [
+            "src/components/another-gts.gts",
+            "src/components/template-import.gts",
             "src/index.ts",
             "src/lint-test-gts.gts",
             "src/lint-test-ts.ts",
-            "src/template-registry.ts",
-            "src/components/another-gts.gts",
-            "src/components/template-import.gts",
             "src/services/example.ts",
+            "src/template-registry.ts",
           ]
         `);
 
         expect(
-          await filesMatching('{dist,declarations}/**/*', addonDir),
+          (await filesMatching('{dist,declarations}/**/*', addonDir)).sort(),
           `ensure we emit the correct files out of the box to the correct folders`,
         ).toMatchInlineSnapshot(`
           [
-            "dist/index.js",
-            "dist/index.js.map",
-            "dist/lint-test-gts.js",
-            "dist/lint-test-gts.js.map",
-            "dist/lint-test-ts.js",
-            "dist/lint-test-ts.js.map",
-            "dist/template-registry.js",
-            "dist/template-registry.js.map",
-            "dist/components/another-gts.js",
-            "dist/components/another-gts.js.map",
-            "dist/components/template-import.js",
-            "dist/components/template-import.js.map",
-            "dist/services/example.js",
-            "dist/services/example.js.map",
-            "dist/_app_/components/another-gts.js",
-            "dist/_app_/components/template-import.js",
-            "dist/_app_/services/example.js",
+            "declarations/components/another-gts.d.ts",
+            "declarations/components/another-gts.d.ts.map",
+            "declarations/components/template-import.d.ts",
+            "declarations/components/template-import.d.ts.map",
             "declarations/index.d.ts",
             "declarations/index.d.ts.map",
             "declarations/lint-test-gts.d.ts",
             "declarations/lint-test-gts.d.ts.map",
             "declarations/lint-test-ts.d.ts",
             "declarations/lint-test-ts.d.ts.map",
-            "declarations/template-registry.d.ts",
-            "declarations/template-registry.d.ts.map",
-            "declarations/components/another-gts.d.ts",
-            "declarations/components/another-gts.d.ts.map",
-            "declarations/components/template-import.d.ts",
-            "declarations/components/template-import.d.ts.map",
             "declarations/services/example.d.ts",
             "declarations/services/example.d.ts.map",
+            "declarations/template-registry.d.ts",
+            "declarations/template-registry.d.ts.map",
+            "dist/_app_/components/another-gts.js",
+            "dist/_app_/components/template-import.js",
+            "dist/_app_/services/example.js",
+            "dist/components/another-gts.js",
+            "dist/components/another-gts.js.map",
+            "dist/components/template-import.js",
+            "dist/components/template-import.js.map",
+            "dist/index.js",
+            "dist/index.js.map",
+            "dist/lint-test-gts.js",
+            "dist/lint-test-gts.js.map",
+            "dist/lint-test-ts.js",
+            "dist/lint-test-ts.js.map",
+            "dist/services/example.js",
+            "dist/services/example.js.map",
+            "dist/template-registry.js",
+            "dist/template-registry.js.map",
           ]
         `);
       });
