@@ -23,7 +23,7 @@ describe('try-scenarios', () => {
         let addonDir = join(tmpDir, addonName);
 
         function runInAddon(command: string) {
-          const env = { ...scenario.env };
+          const env = { ...scenario.env, NODE_ENV: 'development' };
           console.log(`Running \`${command}\` with ${JSON.stringify(env)}`);
           return execa({ shell: true, preferLocal: true, cwd: addonDir, env })(command);
         }
