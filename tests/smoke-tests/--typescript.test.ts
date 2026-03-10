@@ -95,7 +95,7 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
         await commandSucceeds(`${packageManager} run build`);
 
         expect(
-          (await filesMatching('src/**', addonDir)).sort(),
+          await filesMatching('src/**', addonDir),
           `ensure we don't pollute the src dir with declarations and emit the js and .d.ts to the correct folders -- this should be the same as the input files (no change from the fixture + default files)`,
         ).toMatchInlineSnapshot(`
           [
@@ -110,7 +110,7 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
         `);
 
         expect(
-          (await filesMatching('{dist,declarations}/**/*', addonDir)).sort(),
+          await filesMatching('{dist,declarations}/**/*', addonDir),
           `ensure we emit the correct files out of the box to the correct folders`,
         ).toMatchInlineSnapshot(`
           [
