@@ -111,7 +111,7 @@ export async function filesMatching(glob: string, dirPath: string) {
   try {
     let files = await globby(glob, { cwd: dirPath });
 
-    return files;
+    return files.sort();
   } catch (e) {
     console.error('error', e);
 
