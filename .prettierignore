@@ -3,6 +3,7 @@
 *.md
 files/
 tests/fixtures/
+my-addon/
 
 node_modules/
 

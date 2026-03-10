@@ -14,6 +14,7 @@ import {
   dirContents,
   matchesFixture,
   packageJsonAt,
+  safeExecaEnv,
   SUPPORTED_PACKAGE_MANAGERS,
 } from '../helpers.js';
 import { existsSync } from 'node:fs';
@@ -38,8 +39,9 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       addonDir = join(tmpDir, addonName);
       await execa({
         cwd: tmpDir,
+        extendEnv: false,
       })`${localEmberCli} addon ${addonName} -b ${blueprintPath} --skip-npm --skip-git --prefer-local true --${packageManager}`;
-      await execa({ cwd: addonDir })`${packageManager} install`;
+      await execa({ cwd: addonDir, extendEnv: false })`${packageManager} install`;
     });
 
     it('is using the correct packager', async () => {
@@ -99,13 +101,16 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
     // Tests are additive, so when running them in order, we want to check linting
     // before we add files from fixtures
     it('lints with no fixtures all pass', async () => {
-      let { exitCode } = await execa({ cwd: addonDir })`pnpm lint`;
+      let { exitCode } = await execa({ cwd: addonDir, extendEnv: false })`pnpm lint`;
 
       expect(exitCode).toEqual(0);
     });
 
     it('lint:fix with no fixtures', async () => {
-      let { exitCode } = await execa({ cwd: addonDir })`${packageManager} run lint:fix`;
+      let { exitCode } = await execa({
+        cwd: addonDir,
+        extendEnv: false,
+      })`${packageManager} run lint:fix`;
 
       expect(exitCode).toEqual(0);
     });
@@ -124,16 +129,27 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
 
         let testFixture = fixturify.readSync('./fixtures/rendering-tests');
         fixturify.writeSync(join(addonDir, 'tests/rendering'), testFixture);
+
+        fixturify.writeSync(
+          join(addonDir, 'tests/unit'),
+          fixturify.readSync('./fixtures/build-mode-tests'),
+        );
       });
 
       it('lint:fix', async () => {
-        let { exitCode } = await execa({ cwd: addonDir })`${packageManager} run lint:fix`;
+        let { exitCode } = await execa({
+          cwd: addonDir,
+          extendEnv: false,
+        })`${packageManager} run lint:fix`;
 
         expect(exitCode).toEqual(0);
       });
 
       it('build', async () => {
-        let buildResult = await execa({ cwd: addonDir })`${packageManager} run build`;
+        let buildResult = await execa({
+          cwd: addonDir,
+          extendEnv: false,
+        })`${packageManager} run build`;
 
         expect(buildResult.exitCode).toEqual(0);
 
@@ -146,13 +162,24 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
         // It's important that we ensure that dist directory is empty for this test, because
         await fs.rm(join(addonDir, 'dist'), { recursive: true, force: true });
 
-        let testResult = await execa({ cwd: addonDir })`${packageManager} run test`;
+        let testResult = await execa({
+          cwd: addonDir,
+          extendEnv: false,
+          // a modified env required with extendEnv, else we still inherit/merge the env of vitest
+          // which overrides our NODE_ENV from our .env.development file (read by vite)
+          // (because in-shell ENV vars override .env files)
+          env: safeExecaEnv(),
+        })`${packageManager} run test`;
 
         expect(testResult.exitCode).toEqual(0);
 
+        expect(testResult.stdout).includes('debug utils remain in the build: assert');
         expect(testResult.stdout).includes(
-          `# tests 2
-# pass  2
+          'debug utils remain in the build > not supported: DEBUG',
+        );
+        expect(testResult.stdout).includes(
+          `# tests 6
+# pass  6
 # skip  0
 # todo  0
 # fail  0

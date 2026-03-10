@@ -7,9 +7,9 @@ import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
 import {
   assertGeneratedCorrectly,
-  dirContents,
   filesMatching,
   SUPPORTED_PACKAGE_MANAGERS,
+  safeExecaEnv,
 } from '../helpers.js';
 const blueprintPath = path.join(__dirname, '../..');
 let localEmberCli = require.resolve('ember-cli/bin/ember');
@@ -25,6 +25,8 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
         cwd: addonDir,
         shell: true,
         preferLocal: true,
+        extendEnv: false,
+        env: safeExecaEnv(),
         // Allows us to not fail yet when the command fails
         // but we'd still fail appropriately with the exitCode check below.
         // When we fail, we want to check for git diffs for debugging purposes.
@@ -50,13 +52,14 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       addonDir = join(tmpDir, addonName);
       await execa({
         cwd: tmpDir,
+        extendEnv: false,
       })`${localEmberCli} addon ${addonName} -b ${blueprintPath} --skip-npm --prefer-local true --${packageManager} --typescript`;
       // Have to use --force because NPM is *stricter* when you use tags in package.json
       // than pnpm (in that tags don't match any specified stable version)
       if (packageManager === 'npm') {
-        await execa({ cwd: addonDir })`npm install --force`;
+        await execa({ cwd: addonDir, extendEnv: false })`npm install --force`;
       } else if (packageManager === 'pnpm') {
-        await execa({ cwd: addonDir })`pnpm install`;
+        await execa({ cwd: addonDir, extendEnv: false })`pnpm install`;
       }
     });
 
