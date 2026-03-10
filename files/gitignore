@@ -17,5 +17,4 @@ node_modules/
 .prettiercache
 
 # potentially containing secrets
-.env
-.env.*.local
+*.local
