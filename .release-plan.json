@@ -1,22 +1,22 @@
 {
   "solution": {
     "@ember/addon-blueprint": {
-      "impact": "minor",
-      "oldVersion": "0.16.1",
-      "newVersion": "0.17.0",
+      "impact": "patch",
+      "oldVersion": "0.17.0",
+      "newVersion": "0.17.1",
       "tagName": "latest",
       "constraints": [
         {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
+          "impact": "patch",
+          "reason": "Appears in changelog section :bug: Bug Fix"
         },
         {
           "impact": "patch",
-          "reason": "Appears in changelog section :bug: Bug Fix"
+          "reason": "Appears in changelog section :house: Internal"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2026-01-22)\n\n* @ember/addon-blueprint 0.17.0 (minor)\n\n#### :rocket: Enhancement\n* `@ember/addon-blueprint`\n  * [#127](https://github.com/ember-cli/ember-addon-blueprint/pull/127) Add publint ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#130](https://github.com/ember-cli/ember-addon-blueprint/pull/130) bump babel-plugin-ember-template-compilation to version 4 in order to clear deprecation warning ([@void-mAlex](https://github.com/void-mAlex))\n\n#### Committers: 2\n- Alex ([@void-mAlex](https://github.com/void-mAlex))\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2026-03-10)\n\n* @ember/addon-blueprint 0.17.1 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#66](https://github.com/ember-cli/ember-addon-blueprint/pull/66) Add build mode tests (ensuring isDevelopingApp and isTesting are appropriately true when they need to be (as well as assert-stripping)) ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :house: Internal\n* `@ember/addon-blueprint`\n  * [#135](https://github.com/ember-cli/ember-addon-blueprint/pull/135) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#133](https://github.com/ember-cli/ember-addon-blueprint/pull/133) Sort snapshot files ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }

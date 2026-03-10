@@ -1,5 +1,21 @@
 # Changelog
 
+## Release (2026-03-10)
+
+* @ember/addon-blueprint 0.17.1 (patch)
+
+#### :bug: Bug Fix
+* `@ember/addon-blueprint`
+  * [#66](https://github.com/ember-cli/ember-addon-blueprint/pull/66) Add build mode tests (ensuring isDevelopingApp and isTesting are appropriately true when they need to be (as well as assert-stripping)) ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :house: Internal
+* `@ember/addon-blueprint`
+  * [#135](https://github.com/ember-cli/ember-addon-blueprint/pull/135) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#133](https://github.com/ember-cli/ember-addon-blueprint/pull/133) Sort snapshot files ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2026-01-22)
 
 * @ember/addon-blueprint 0.17.0 (minor)
