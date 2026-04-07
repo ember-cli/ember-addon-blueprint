@@ -6,9 +6,8 @@ For migrating a v1 addon to a v2 addon, you may follow _[Porting Addons to V2](h
 this blog post [Migrating an Ember addon to the next-gen v2 format
 ](https://www.kaliber5.de/de/blog/v2-addon_en).
 
-## WIP
-
-This is still work in progress but we are aiming for this to be the new default for when someone generates an addon with `ember addon super-addon-name`. This will need an RFC to change the default but if you notice anything that you would like to be improved with this blueprint please open an issue to discuss, you don't need to wait for the RFC process to give us feedback. 
+> [!NOTE]
+> This is not yet the default blueprint. For discussion on strategy around this becoming the default, see [the RFC](https://github.com/emberjs/rfcs/pull/985)
 
 ## Usage
 
