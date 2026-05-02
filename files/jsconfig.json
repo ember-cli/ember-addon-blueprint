@@ -1,0 +1,24 @@
+/**
+ * This jsconfig is not used for publishing.
+ * It enables Glint editor tooling for the addon's local editing experience.
+ */
+{
+  "extends": "@ember/app-tsconfig",
+  "include": [
+    "src/**/*",
+    "tests/**/*",
+    "unpublished-development-types/**/*",
+    "demo-app/**/*"
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "noEmit": true,
+    "rootDir": ".",
+    "types": [
+      "ember-source/types",
+      "vite/client",
+      "@embroider/core/virtual",
+      "@glint/ember-tsc/types"
+    ]
+  }
+}

@@ -105,7 +105,6 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
             "src/lint-test-gts.gts",
             "src/lint-test-ts.ts",
             "src/services/example.ts",
-            "src/template-registry.ts",
           ]
         `);
 
@@ -126,8 +125,6 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
             "declarations/lint-test-ts.d.ts.map",
             "declarations/services/example.d.ts",
             "declarations/services/example.d.ts.map",
-            "declarations/template-registry.d.ts",
-            "declarations/template-registry.d.ts.map",
             "dist/_app_/components/another-gts.js",
             "dist/_app_/components/template-import.js",
             "dist/_app_/services/example.js",
@@ -143,8 +140,6 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
             "dist/lint-test-ts.js.map",
             "dist/services/example.js",
             "dist/services/example.js.map",
-            "dist/template-registry.js",
-            "dist/template-registry.js.map",
           ]
         `);
       });

@@ -60,8 +60,6 @@ describe(`rollup-build | explicit-imports`, () => {
       'services',
       'index.js',
       'index.js.map',
-      'template-registry.js',
-      'template-registry.js.map',
     ]);
 
     expect(await dirContents(declarationsDir)).to.deep.equal([
@@ -69,8 +67,6 @@ describe(`rollup-build | explicit-imports`, () => {
       'index.d.ts',
       'index.d.ts.map',
       'services',
-      'template-registry.d.ts',
-      'template-registry.d.ts.map',
     ]);
 
     expect(await dirContents(path.join(distDir, 'services'))).to.deep.equal([
