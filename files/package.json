@@ -53,6 +53,7 @@
     "@glint/ember-tsc": "^1.0.3",
     "@glint/template": "^1.6.1",
     "@glint/tsserver-plugin": "^2.0.0<% } %>",
+    "@rollup/plugin-node-resolve": "16.0.3",
     "@rollup/plugin-babel": "^6.0.4<% if (typescript) { %>",
     "@types/qunit": "^2.19.12<% } %>",
     "babel-plugin-ember-template-compilation": "^4.0.0",

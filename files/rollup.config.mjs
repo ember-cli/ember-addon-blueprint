@@ -2,6 +2,7 @@ import { babel } from '@rollup/plugin-babel';
 import { Addon } from '@embroider/addon-dev/rollup';
 import { fileURLToPath } from 'node:url';
 import { resolve, dirname } from 'node:path';
+import nodeResolve from '@rollup/plugin-node-resolve';
 
 const addon = new Addon({
   srcDir: 'src',
@@ -63,14 +64,21 @@ export default {
     // Emit .d.ts declaration files
     addon.declarations(
       'declarations',
-      <% if (pnpm) { %>`pnpm ember-tsc --declaration --project ${tsConfig}`,<% } else if (npm) 
-                   { %>`npm exec ember-tsc -- --declaration --project ${tsConfig}`,<% } else 
+      <% if (pnpm) { %>`pnpm ember-tsc --declaration --project ${tsConfig}`,<% } else if (npm)
+                   { %>`npm exec ember-tsc -- --declaration --project ${tsConfig}`,<% } else
                    { %>`npx @glint/ember-tsc -- --declaration --project ${tsConfig}`,<% } %>
     ),<% } %>
 
     // addons are allowed to contain imports of .css files, which we want rollup
     // to leave alone and keep in the published output.
     addon.keepAssets(['**/*.css']),
+
+		// Adds support for sub-path import resolving
+    // It's important that moduleDirectories is set to an empty array,
+    // otherwise nodeResolve will attempt to enable bundling of imported dependencies
+		nodeResolve({
+			moduleDirectories: [],
+		}),
 
     // Remove leftover build artifacts when starting a new build.
     addon.clean(),
