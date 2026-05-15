@@ -17,6 +17,7 @@ const replacers = {
 };
 
 module.exports = {
+  name: "face",
   description,
 
   fileMapTokens(options) {
