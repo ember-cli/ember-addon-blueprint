@@ -113,8 +113,9 @@ module.exports = {
       delete contents.scripts.prepack;
       delete contents.devDependencies['@embroider/addon-dev'];
       delete contents.devDependencies['@ember/library-tsconfig'];
-      delete contents.devDependencies['@rollup/plugin-babel'];
       delete contents.devDependencies['rollup'];
+
+      contents.scripts['lint:publish'] = 'publint run --level error';
     }
 
     let sorted = sortPackageJson(contents);

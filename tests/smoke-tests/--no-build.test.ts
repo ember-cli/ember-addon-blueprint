@@ -53,7 +53,7 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       await execa({
         cwd: tmpDir,
         extendEnv: false,
-      })`${localEmberCli} addon ${addonName} -b ${blueprintPath} --skip-npm --prefer-local true --${packageManager} --no-build`;
+      })`${localEmberCli} addon ${addonName} -b ${blueprintPath} --skip-npm true --${packageManager} --no-build`;
       // Have to use --force because NPM is *stricter* when you use tags in package.json
       // than pnpm (in that tags don't match any specified stable version)
       if (packageManager === 'npm') {
@@ -77,14 +77,35 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
       await commandSucceeds(`${packageManager} run lint`);
     });
 
+    // Tests are additive, so when running them in order, we want to check linting
+    // before we add files from fixtures
+    it('lints with no fixtures all pass', async () => {
+      let { exitCode } = await execa({ cwd: addonDir, extendEnv: false })`pnpm lint`;
+
+      expect(exitCode).toEqual(0);
+    });
+
+    it('lint:fix with no fixtures', async () => {
+      let { exitCode } = await execa({
+        cwd: addonDir,
+        extendEnv: false,
+      })`${packageManager} run lint:fix`;
+
+      expect(exitCode).toEqual(0);
+    });
+
     describe('with fixture', () => {
       beforeEach(async () => {
-        let addonFixture = fixturify.readSync('./fixtures/typescript');
-        fixturify.writeSync(addonDir, addonFixture);
+        let addonFixture = fixturify.readSync('./fixtures/addon');
+        fixturify.writeSync(join(addonDir, 'src'), addonFixture);
 
-        // It's important that we ensure that dist directory is empty for these tests,
-        // troll-y things can happen with shared dists
-        await fs.rm(join(addonDir, 'dist'), { recursive: true, force: true });
+        let testFixture = fixturify.readSync('./fixtures/rendering-tests');
+        fixturify.writeSync(join(addonDir, 'tests/rendering'), testFixture);
+
+        fixturify.writeSync(
+          join(addonDir, 'tests/unit'),
+          fixturify.readSync('./fixtures/build-mode-tests'),
+        );
       });
 
       it('lint:fix', async () => {
@@ -95,8 +116,8 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
         let testResult = await commandSucceeds(`${packageManager} run test`);
 
         console.log(testResult.stdout);
-        expect(testResult.stdout).to.include('# tests 2');
-        expect(testResult.stdout).to.include('# pass  2');
+        expect(testResult.stdout).to.include('# tests 6');
+        expect(testResult.stdout).to.include('# pass  6');
         expect(testResult.stdout).to.include('# fail  0');
       });
     });
