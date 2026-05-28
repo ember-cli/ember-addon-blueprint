@@ -75,6 +75,9 @@ module.exports = {
       files = files.filter(
         (filename) => !filename.match(/.*\.ts$/) && !ignoredFiles.includes(filename),
       );
+    } else {
+      // jsconfig.json is only for the JS path; TS addons use tsconfig.json.
+      files = files.filter((filename) => filename !== 'jsconfig.json');
     }
 
     return files;
