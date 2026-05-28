@@ -1,0 +1,7 @@
+# Unlabeled Changes
+
+* `@ember/addon-blueprint`
+  * [#136](https://github.com/ember-cli/ember-addon-blueprint/pull/136) Update README to remove WIP and clarify blueprint status ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+
+*Cannot plan release until the above changes are labeled*.
