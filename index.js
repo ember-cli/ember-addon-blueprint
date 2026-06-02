@@ -11,8 +11,8 @@ function stringifyAndNormalize(contents) {
 }
 
 const replacers = {
-  'package.json'(content) {
-    return this.updatePackageJson(content);
+  'package.json'(locals, content) {
+    return this.updatePackageJson(locals, content);
   },
 };
 
@@ -34,6 +34,9 @@ module.exports = {
       );
     }
 
+    // noBuild doesn't exist because of how ember-cli normalizes args
+    let noBuild = options.build === false;
+
     return {
       name: options.name,
       blueprintVersion: require('./package.json').version,
@@ -51,8 +54,11 @@ module.exports = {
         '--pnpm': isPnpm(options),
         '--npm': isNpm(options),
         '--typescript': options.typescript,
+        '--no-build': options.noBuild,
       }),
       ciProvider: options.ciProvider,
+      noBuild,
+      hasBuild: !noBuild,
     };
   },
 
@@ -77,12 +83,44 @@ module.exports = {
       );
     }
 
+    if (options.noBuild) {
+      files = files.filter((filename) => {
+        if (filename.endsWith('rollup.config.mjs')) return false;
+        if (filename.endsWith('babel.publish.config.cjs')) return false;
+        if (filename.endsWith('tsconfig.publish.json')) return false;
+
+        return true;
+      });
+    }
+
     return files;
   },
 
-  updatePackageJson(content) {
+  updatePackageJson(locals, content) {
     let contents = JSON.parse(content);
-    return stringifyAndNormalize(sortPackageJson(contents));
+
+    if (locals.noBuild) {
+      let extSuffix = locals.typescript ? 'ts' : 'js';
+
+      contents.exports = {
+        '.': `./src/index.${extSuffix}`,
+        './addon-main.js': './addon-main.cjs',
+        './*': './src/*',
+        './*.css': './src/*.css',
+      };
+
+      delete contents.scripts.build;
+      delete contents.scripts.prepack;
+      delete contents.devDependencies['@embroider/addon-dev'];
+      delete contents.devDependencies['@ember/library-tsconfig'];
+      delete contents.devDependencies['rollup'];
+
+      contents.scripts['lint:publish'] = 'publint run --level error';
+    }
+
+    let sorted = sortPackageJson(contents);
+    let normalized = stringifyAndNormalize(sorted);
+    return normalized;
   },
 
   /**
@@ -100,11 +138,11 @@ module.exports = {
    *     _js_eslint.config.mjs is deleted
    *     _ts_eslint.config.mjs is renamed to eslint.config.mjs
    */
-  buildFileInfo(_intoDir, _templateVariables, file, _commandOptions) {
+  buildFileInfo(_intoDir, locals, file, _commandOptions) {
     let fileInfo = this._super.buildFileInfo.apply(this, arguments);
 
     if (file in replacers) {
-      fileInfo.replacer = replacers[file].bind(this);
+      fileInfo.replacer = replacers[file].bind(this, locals);
     }
 
     return fileInfo;
