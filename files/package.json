@@ -27,7 +27,7 @@
     "lint:types": "ember-tsc --noEmit<% } %>",
     "lint:publish": "<%= runScript %> build && publint run --level error",
     "start": "vite dev",
-    "test": "vite build --mode=development --out-dir dist-tests && testem --file testem.cjs ci --port 0",
+    "test": "EMBER_ENV=test vite build --mode=development --out-dir dist-tests && testem --file testem.cjs ci --port 0",
     "prepack": "rollup --config"
   },
   "dependencies": {
