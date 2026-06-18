@@ -10,7 +10,14 @@ const {
   templateCompatSupport,
 } = require('@embroider/compat/babel');
 
-const macros = buildMacros();
+const macros = buildMacros({
+  configure(config) {
+    if (process.env.EMBER_ENV === "test") {
+      config.enableRuntimeMode();
+    }
+  },
+});
+
 
 // For scenario testing
 const isCompat = Boolean(process.env.ENABLE_COMPAT_BUILD);
