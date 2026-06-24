@@ -19,7 +19,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4<% if (pnpm) { %>
-      - uses: pnpm/action-setup@v4<% } %>
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10<% } %>
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -38,7 +40,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4<% if (pnpm) { %>
-      - uses: pnpm/action-setup@v4<% } %>
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10<% } %>
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -49,9 +53,7 @@ jobs:
         run: <%= pnpm ? 'pnpm' : yarn ? 'yarn' : 'npm run' %> test
       # For the Try Scenarios
       - id: set-matrix
-        run: |
-          <% if (pnpm) { %> echo "matrix=$(pnpm -s dlx @embroider/try list)" >> $GITHUB_OUTPUT<% } %>
-          <% if (npm) { %> echo "matrix=$(npx @embroider/try list)" >> $GITHUB_OUTPUT<% } %>
+        run: <% if (pnpm) { %>echo "matrix=$(pnpm -s dlx @embroider/try list)" >> $GITHUB_OUTPUT<% } %><% if (npm) { %>echo "matrix=$(npx @embroider/try list)" >> $GITHUB_OUTPUT<% } %>
 
   floating:
     name: "Floating Dependencies"
@@ -60,7 +62,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4<% if (pnpm) { %>
-      - uses: pnpm/action-setup@v4<% } %>
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10<% } %>
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -81,19 +85,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4<% if (pnpm) { %>
-      - uses: pnpm/action-setup@v4<% } %>
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10<% } %>
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: <%= pnpm ? 'pnpm' : yarn ? 'yarn' : 'npm' %>
       - name: Apply Scenario
         run: |
-          <% if (pnpm) { %> pnpm dlx @embroider/try apply ${{ matrix.name }}<% } %>
-          <% if (npm) { %> npx @embroider/try apply ${{ matrix.name }}<% } %>
+          <% if (pnpm) { %>pnpm dlx @embroider/try apply ${{ matrix.name }}<% } %>
+          <% if (npm) { %>npx @embroider/try apply ${{ matrix.name }}<% } %>
       - name: Install Dependencies
         run: <%= pnpm ? 'pnpm install --no-lockfile' : yarn ? 'yarn install --no-lockfile' : 'npm install --no-package-lock' %>
       - name: Run Tests
-        run: |
-          <% if (pnpm) { %>pnpm test<% } %>
-          <% if (npm) { %>npm test<% } %>
+        run: <% if (pnpm) { %>pnpm test<% } %><% if (npm) { %>npm test<% } %>
         env: ${{ matrix.env }}
