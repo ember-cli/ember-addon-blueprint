@@ -1,5 +1,23 @@
 # Changelog
 
+## Release (2026-07-07)
+
+* @ember/addon-blueprint 0.18.0 (minor)
+
+#### :rocket: Enhancement
+* `@ember/addon-blueprint`
+  * [#147](https://github.com/ember-cli/ember-addon-blueprint/pull/147) Add placeholder in README for documenting exports ([@kategengler](https://github.com/kategengler))
+  * [#146](https://github.com/ember-cli/ember-addon-blueprint/pull/146) Add `--no-build` ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#136](https://github.com/ember-cli/ember-addon-blueprint/pull/136) Update README to remove WIP and clarify blueprint status ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :bug: Bug Fix
+* `@ember/addon-blueprint`
+  * [#145](https://github.com/ember-cli/ember-addon-blueprint/pull/145) Fix pnpm 11 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 2
+- Katie Gengler ([@kategengler](https://github.com/kategengler))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2026-03-10)
 
 * @ember/addon-blueprint 0.17.1 (patch)
