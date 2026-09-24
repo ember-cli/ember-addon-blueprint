@@ -39,6 +39,10 @@ export async function assertGeneratedCorrectly({
   expect(await fse.pathExists(addonPath), `${addonPath} exists`).toBe(true);
   let addonPackageJson = await packageJsonAt(addonPath);
   expect(addonPackageJson.name, `addon has correct name: ${addonName}`).toEqual(addonName);
+  expect(
+    addonPackageJson.scripts['lint:js'],
+    'eslint only caches without type-aware rules',
+  ).toEqual(typeScript ? 'eslint .' : 'eslint . --cache');
 
   for (let expectedFile of expectedStaticFiles) {
     let pathToFile = path.join(addonPath, expectedFile);
