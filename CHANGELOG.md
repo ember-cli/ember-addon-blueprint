@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2026-09-24)
+
+* @ember/addon-blueprint 0.18.1 (patch)
+
+#### :bug: Bug Fix
+* `@ember/addon-blueprint`
+  * [#149](https://github.com/ember-cli/ember-addon-blueprint/pull/149) Don't pass --cache to eslint in TypeScript addons ([@aklkv](https://github.com/aklkv))
+
+#### Committers: 1
+- Alexey Kulakov ([@aklkv](https://github.com/aklkv))
+
 ## Release (2026-07-07)
 
 * @ember/addon-blueprint 0.18.0 (minor)

@@ -1,15 +1,11 @@
 {
   "solution": {
     "@ember/addon-blueprint": {
-      "impact": "minor",
-      "oldVersion": "0.17.1",
-      "newVersion": "0.18.0",
+      "impact": "patch",
+      "oldVersion": "0.18.0",
+      "newVersion": "0.18.1",
       "tagName": "latest",
       "constraints": [
-        {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        },
         {
           "impact": "patch",
           "reason": "Appears in changelog section :bug: Bug Fix"
@@ -18,5 +14,5 @@
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2026-07-07)\n\n* @ember/addon-blueprint 0.18.0 (minor)\n\n#### :rocket: Enhancement\n* `@ember/addon-blueprint`\n  * [#147](https://github.com/ember-cli/ember-addon-blueprint/pull/147) Add placeholder in README for documenting exports ([@kategengler](https://github.com/kategengler))\n  * [#146](https://github.com/ember-cli/ember-addon-blueprint/pull/146) Add `--no-build` ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#136](https://github.com/ember-cli/ember-addon-blueprint/pull/136) Update README to remove WIP and clarify blueprint status ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#145](https://github.com/ember-cli/ember-addon-blueprint/pull/145) Fix pnpm 11 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 2\n- Katie Gengler ([@kategengler](https://github.com/kategengler))\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2026-09-24)\n\n* @ember/addon-blueprint 0.18.1 (patch)\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#149](https://github.com/ember-cli/ember-addon-blueprint/pull/149) Don't pass --cache to eslint in TypeScript addons ([@aklkv](https://github.com/aklkv))\n\n#### Committers: 1\n- Alexey Kulakov ([@aklkv](https://github.com/aklkv))\n"
 }
