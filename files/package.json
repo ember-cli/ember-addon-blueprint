@@ -8,6 +8,10 @@
   "repository": "",
   "license": "MIT",
   "author": "",
+  "sideEffects": [
+    "**/*.css",
+    "./tests/**"
+  ],
   "files": [
     "addon-main.cjs",
     "declarations",
