@@ -17,10 +17,10 @@
     "new:addon": "rm -rf my-addon; pnpm dlx ember-cli@latest addon my-addon --blueprint ."
   },
   "dependencies": {
-    "sort-package-json": "^3.4.0"
+    "sort-package-json": "^3.7.1"
   },
   "devDependencies": {
-    "prettier": "^3.5.3",
+    "prettier": "^3.10.1",
     "prettier-plugin-ember-template-tag": "2.1.0",
     "release-plan": "^0.17.4"
   },
