@@ -12,7 +12,6 @@
  *     npx eslint --inspect-config
  *
  */
-import babelParser from '@babel/eslint-parser/experimental-worker';
 import js from '@eslint/js';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import prettier from 'eslint-config-prettier';
@@ -47,10 +46,17 @@ export default defineConfig([
       reportUnusedDisableDirectives: 'error',
     },
   },
+  /**
+   * ember-eslint-parser loads @babel/eslint-parser
+   * in the way the installed Babel major needs.
+   * (babel.config.cjs has async plugins,
+   * so Babel 7 needs the experimental-worker entry,
+   * which Babel 8 no longer has.)
+   */
   {
     files: ['**/*.js'],
     languageOptions: {
-      parser: babelParser,
+      parser: ember.parser,
     },
   },
   {

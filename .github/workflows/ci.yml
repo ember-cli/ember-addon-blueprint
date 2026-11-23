@@ -116,3 +116,25 @@ jobs:
         run: pnpm install --frozen-lockfile
       - run: pnpm vitest --testNamePattern "${{ matrix.slow-test }}"
         working-directory: tests
+
+  babel_8_eslint_10_tests:
+    name: "Slow tests: ${{ matrix.slow-test }}"
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        slow-test:
+          - babel 8 and eslint 10 with npm
+          - babel 8 and eslint 10 with pnpm
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+      - run: pnpm vitest --testNamePattern "${{ matrix.slow-test }}"
+        working-directory: tests
