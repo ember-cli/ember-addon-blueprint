@@ -1,0 +1,41 @@
+name: Update Dependencies
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 1 * *' # the first day of each month at 3am
+
+concurrency:
+  group: update-dependencies
+  cancel-in-progress: true
+
+jobs:
+  update:
+    name: Update blueprint dependencies
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+      # update-blueprint-deps keeps each range in its current major, so a major upgrade is still a manual change.
+      - run: pnpm dlx update-blueprint-deps --filter '.*' package.json files/package.json
+      - run: pnpm install --no-frozen-lockfile
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: 'update blueprint dependencies'
+          labels: enhancement
+          sign-commits: true
+          branch: update-dependencies
+          delete-branch: true
+          title: Update blueprint dependencies
+          body: |
+            Updates the dependencies in `package.json` and `files/package.json` to the newest versions in their current ranges. The [Update Dependencies](https://github.com/${{ github.repository }}/actions/workflows/update-dependencies.yml) workflow made this PR.
+
+            CI does not start for a PR that `GITHUB_TOKEN` opened. To run CI, close and reopen this PR.
