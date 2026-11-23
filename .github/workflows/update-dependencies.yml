@@ -1,0 +1,45 @@
+name: Update Dependencies
+
+on:
+  workflow_dispatch:
+    inputs:
+      majors:
+        description: 'Update to the latest major versions'
+        type: boolean
+        default: false
+  schedule:
+    - cron: '0 3 1 * *' # the first day of each month at 3am
+
+concurrency:
+  group: update-dependencies-${{ inputs.majors && 'majors' || 'minors' }}
+  cancel-in-progress: true
+
+jobs:
+  update:
+    name: Update blueprint dependencies
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+      # Without --tag, update-blueprint-deps keeps each range in its current major.
+      # With --tag latest, it uses the latest dist-tag and skips its 7-day minimum release age.
+      - run: pnpm dlx update-blueprint-deps --filter '.*' ${{ inputs.majors && '--tag latest' || '' }} package.json files/package.json
+      - run: pnpm install --no-frozen-lockfile
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: ${{ inputs.majors && 'update blueprint dependencies to the latest majors' || 'update blueprint dependencies' }}
+          labels: ${{ inputs.majors && 'breaking' || 'enhancement' }}
+          sign-commits: true
+          branch: ${{ inputs.majors && 'update-dependencies-majors' || 'update-dependencies' }}
+          delete-branch: true
+          title: ${{ inputs.majors && 'Update blueprint dependencies to the latest majors' || 'Update blueprint dependencies' }}
+          body: |
+            Updates the dependencies in `package.json` and `files/package.json` to ${{ inputs.majors && 'the `latest` dist-tag of each package, including new majors' || 'the newest versions in their current ranges' }}. The [Update Dependencies](https://github.com/${{ github.repository }}/actions/workflows/update-dependencies.yml) workflow made this PR.
