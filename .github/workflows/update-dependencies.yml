@@ -37,5 +37,3 @@ jobs:
           title: Update blueprint dependencies
           body: |
             Updates the dependencies in `package.json` and `files/package.json` to the newest versions in their current ranges. The [Update Dependencies](https://github.com/${{ github.repository }}/actions/workflows/update-dependencies.yml) workflow made this PR.
-
-            CI does not start for a PR that `GITHUB_TOKEN` opened. To run CI, close and reopen this PR.
