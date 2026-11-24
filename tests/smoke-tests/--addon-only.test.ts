@@ -38,7 +38,7 @@ describe.skip('--addon-only', () => {
     expect(rootContents).to.include('addon-main.cjs');
     expect(rootContents).to.include('babel.config.json');
     expect(rootContents).to.include('package.json');
-    expect(rootContents).to.include('rollup.config.mjs');
+    expect(rootContents).to.include('rolldown.config.mjs');
 
     let configContents = await dirContents(path.join(helper.projectRoot, 'config'));
 

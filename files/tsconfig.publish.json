@@ -14,8 +14,8 @@
       https://www.typescriptlang.org/tsconfig#rootDir
       "Default: The longest common path of all non-declaration input files."
 
-      Because we want our declarations' structure to match our rollup output,
-      we need this "rootDir" to match the "srcDir" in the rollup.config.mjs.
+      Because we want our declarations' structure to match our rolldown output,
+      we need this "rootDir" to match the "srcDir" in the rolldown.config.mjs.
 
       This way, we can have simpler `package.json#exports` that matches
       imports to files on disk
