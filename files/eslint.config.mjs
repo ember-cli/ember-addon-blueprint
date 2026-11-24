@@ -17,7 +17,7 @@ import js from '@eslint/js';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import prettier from 'eslint-config-prettier';
 import ember from 'eslint-plugin-ember/recommended';
-import importPlugin from 'eslint-plugin-import';
+import { importX } from 'eslint-plugin-import-x';
 import n from 'eslint-plugin-n';
 import globals from 'globals';<% if (typescript) { %>
 import ts from 'typescript-eslint';<% } %>
@@ -84,11 +84,11 @@ export default defineConfig([
   {
     files: ['src/**/*'],
     plugins: {
-      import: importPlugin,
+      'import-x': importX,
     },
     rules: {
       // require relative imports use full extensions
-      'import/extensions': ['error', 'always', { ignorePackages: true }],
+      'import-x/extensions': ['error', 'always', { ignorePackages: true }],
     },
   },
   /**
