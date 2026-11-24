@@ -31,7 +31,6 @@ describe.skip('--addon-only', () => {
     expect(rootContents).to.include('pnpm-workspace.yaml');
     expect(rootContents).to.include('.prettierignore');
     expect(rootContents).to.include('.prettierrc.mjs');
-    expect(rootContents).to.include('.template-lintrc.mjs');
     expect(rootContents).to.include('CONTRIBUTING.md');
     expect(rootContents).to.include('LICENSE.md');
     expect(rootContents).to.include('README.md');

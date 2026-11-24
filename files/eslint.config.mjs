@@ -16,11 +16,19 @@ import babelParser from '@babel/eslint-parser';
 import js from '@eslint/js';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import prettier from 'eslint-config-prettier';
-import ember from 'eslint-plugin-ember/recommended';
+import emberTemplateLintMigration from 'eslint-plugin-ember/configs/template-lint-migration';
+import ember, { hbsParser } from 'eslint-plugin-ember/recommended';
 import { importX } from 'eslint-plugin-import-x';
 import n from 'eslint-plugin-n';
 import globals from 'globals';<% if (typescript) { %>
 import ts from 'typescript-eslint';<% } %>
+
+// Only the plugin and its rules: ember.configs.gjs/gts set up the parsers, and
+// the preset's own `**/*.{gjs,gts}` block would make JavaScript addons lint
+// the demo app's .gts files.
+const templateRules = emberTemplateLintMigration.filter(
+  (config) => !config.files,
+);
 
 const esmParserOptions = {
   ecmaFeatures: { modules: true },
@@ -39,6 +47,7 @@ export default defineConfig([
   ember.configs.base,
   ember.configs.gjs,<% if (typescript) { %>
   ember.configs.gts,<% } %>
+  ...templateRules,
   /**
    * https://eslint.org/docs/latest/use/configure/configuration-files#configuring-linter-options
    */
@@ -51,6 +60,12 @@ export default defineConfig([
     files: ['**/*.js'],
     languageOptions: {
       parser: babelParser,
+    },
+  },
+  {
+    files: ['**/*.hbs'],
+    languageOptions: {
+      parser: hbsParser,
     },
   },
   {
