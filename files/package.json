@@ -87,9 +87,6 @@
     "type": "addon",
     "main": "addon-main.cjs"
   },
-  "engines": {
-    "node": "^22.18.0 || >=24.11.0"
-  },
   "imports": {
     "#src/*": "./src/*"
   },
