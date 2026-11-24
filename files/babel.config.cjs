@@ -20,8 +20,6 @@ module.exports = {
     [
       '@babel/plugin-transform-typescript',
       {
-        allExtensions: true,
-        allowDeclareFields: true,
         onlyRemoveTypeImports: true,
       },
     ],<% } %>
