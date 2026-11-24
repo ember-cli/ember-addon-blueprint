@@ -22,7 +22,7 @@
   "devDependencies": {
     "prettier": "^3.10.1",
     "prettier-plugin-ember-template-tag": "2.1.0",
-    "release-plan": "^0.17.4"
+    "release-plan": "^0.18.0"
   },
   "packageManager": "pnpm@10.6.5"
 }
