@@ -2,6 +2,17 @@
 
 ## Release (2026-11-24)
 
+* @ember/addon-blueprint 0.20.0 (minor)
+
+#### :rocket: Enhancement
+* `@ember/addon-blueprint`
+  * [#163](https://github.com/ember-cli/ember-addon-blueprint/pull/163) Use Babel 8 and ESLint 10 in the generated addon ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+#### Committers: 1
+- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+## Release (2026-11-24)
+
 * @ember/addon-blueprint 0.19.0 (minor)
 
 #### :rocket: Enhancement

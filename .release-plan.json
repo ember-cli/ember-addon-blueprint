@@ -2,21 +2,17 @@
   "solution": {
     "@ember/addon-blueprint": {
       "impact": "minor",
-      "oldVersion": "0.18.1",
-      "newVersion": "0.19.0",
+      "oldVersion": "0.19.0",
+      "newVersion": "0.20.0",
       "tagName": "latest",
       "constraints": [
         {
           "impact": "minor",
           "reason": "Appears in changelog section :rocket: Enhancement"
-        },
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2026-11-24)\n\n* @ember/addon-blueprint 0.19.0 (minor)\n\n#### :rocket: Enhancement\n* `@ember/addon-blueprint`\n  * [#157](https://github.com/ember-cli/ember-addon-blueprint/pull/157) Update non-babel dependencies ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#161](https://github.com/ember-cli/ember-addon-blueprint/pull/161) Replace eslint-plugin-import with eslint-plugin-import-x ([@aklkv](https://github.com/aklkv))\n  * [#155](https://github.com/ember-cli/ember-addon-blueprint/pull/155) Update blueprint dependencies ([@github-actions[bot]](https://github.com/apps/github-actions))\n\n#### :house: Internal\n* `@ember/addon-blueprint`\n  * [#156](https://github.com/ember-cli/ember-addon-blueprint/pull/156) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#162](https://github.com/ember-cli/ember-addon-blueprint/pull/162) Keep ESLint 9 in the generated addon ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n  * [#152](https://github.com/ember-cli/ember-addon-blueprint/pull/152) Add a monthly workflow that updates blueprint dependencies ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n\n#### Committers: 4\n- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n- Alexey Kulakov ([@aklkv](https://github.com/aklkv))\n- GitHub Actions [Bot] ([@github-actions](https://github.com/apps/github-actions))\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2026-11-24)\n\n* @ember/addon-blueprint 0.20.0 (minor)\n\n#### :rocket: Enhancement\n* `@ember/addon-blueprint`\n  * [#163](https://github.com/ember-cli/ember-addon-blueprint/pull/163) Use Babel 8 and ESLint 10 in the generated addon ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n\n#### Committers: 1\n- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n"
 }
