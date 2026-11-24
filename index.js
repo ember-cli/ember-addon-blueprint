@@ -118,6 +118,16 @@ module.exports = {
       contents.scripts['lint:publish'] = 'publint run --level error';
     }
 
+    if (locals.npm) {
+      /**
+       * @rollup/plugin-babel has the peer `@babel/core ^7`.
+       * pnpm only warns, but npm fails to install.
+       */
+      contents.overrides = {
+        '@rollup/plugin-babel': { '@babel/core': '$@babel/core' },
+      };
+    }
+
     let sorted = sortPackageJson(contents);
     let normalized = stringifyAndNormalize(sorted);
     return normalized;
