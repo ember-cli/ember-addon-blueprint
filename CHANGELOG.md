@@ -1,5 +1,27 @@
 # Changelog
 
+## Release (2026-11-24)
+
+* @ember/addon-blueprint 0.19.0 (minor)
+
+#### :rocket: Enhancement
+* `@ember/addon-blueprint`
+  * [#157](https://github.com/ember-cli/ember-addon-blueprint/pull/157) Update non-babel dependencies ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#161](https://github.com/ember-cli/ember-addon-blueprint/pull/161) Replace eslint-plugin-import with eslint-plugin-import-x ([@aklkv](https://github.com/aklkv))
+  * [#155](https://github.com/ember-cli/ember-addon-blueprint/pull/155) Update blueprint dependencies ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+#### :house: Internal
+* `@ember/addon-blueprint`
+  * [#156](https://github.com/ember-cli/ember-addon-blueprint/pull/156) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#162](https://github.com/ember-cli/ember-addon-blueprint/pull/162) Keep ESLint 9 in the generated addon ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+  * [#152](https://github.com/ember-cli/ember-addon-blueprint/pull/152) Add a monthly workflow that updates blueprint dependencies ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+#### Committers: 4
+- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+- Alexey Kulakov ([@aklkv](https://github.com/aklkv))
+- GitHub Actions [Bot] ([@github-actions](https://github.com/apps/github-actions))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2026-09-24)
 
 * @ember/addon-blueprint 0.18.1 (patch)
