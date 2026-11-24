@@ -155,7 +155,7 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
 
         let contents = await dirContents(join(addonDir, 'dist'));
 
-        expect(contents).to.deep.equal(['_app_', 'components', 'index.js', 'index.js.map']);
+        expect(contents).to.deep.equal(['_app_', 'components', 'index.js']);
       });
 
       it('test', async () => {
