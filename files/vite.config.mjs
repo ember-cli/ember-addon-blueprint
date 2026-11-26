@@ -19,12 +19,10 @@ export default defineConfig({
       ),
     }),
     await babel({
-      extends: './babel.config.cjs',
+      presets: ['./babel.config.cjs'],
       include: /\.(js|ts|gjs|gts|mjs|mts|hbs)(\?.*)?$/,
-      // Addons in node_modules need babel too, for macros
-      exclude: [],
-      // The plugin turns itself off when this list is empty
-      plugins: [() => ({})],
+      // Only rolldown's runtime: addons in node_modules need babel too, for macros
+      exclude: [/^\0rolldown\/runtime\.js$/],
     }),
   ],
   build: {
