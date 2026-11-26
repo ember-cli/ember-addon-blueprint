@@ -13,6 +13,10 @@ const babelConfig = resolve(rootDirectory, './babel.publish.config.cjs');<% if (
 const tsConfig = resolve(rootDirectory, './tsconfig.publish.json');<% } %>
 
 export default {
+  // Lets addon.keepAssets() below turn .css imports into kept assets,
+  // instead of rolldown trying to bundle them.
+  moduleTypes: { '.css': 'js' },
+
   // This provides defaults that work well alongside `publicEntrypoints` below.
   // You can augment this if you need to.
   output: addon.output(),
