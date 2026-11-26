@@ -136,7 +136,6 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
             "dist/components/template-import.js",
             "dist/components/template-import.js.map",
             "dist/index.js",
-            "dist/index.js.map",
             "dist/lint-test-gts.js",
             "dist/lint-test-gts.js.map",
             "dist/lint-test-ts.js",
@@ -144,7 +143,6 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
             "dist/services/example.js",
             "dist/services/example.js.map",
             "dist/template-registry.js",
-            "dist/template-registry.js.map",
           ]
         `);
       });

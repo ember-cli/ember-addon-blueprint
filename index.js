@@ -85,7 +85,7 @@ module.exports = {
 
     if (options.noBuild) {
       files = files.filter((filename) => {
-        if (filename.endsWith('rollup.config.mjs')) return false;
+        if (filename.endsWith('rolldown.config.mjs')) return false;
         if (filename.endsWith('babel.publish.config.cjs')) return false;
         if (filename.endsWith('tsconfig.publish.json')) return false;
 
@@ -113,19 +113,9 @@ module.exports = {
       delete contents.scripts.prepack;
       delete contents.devDependencies['@embroider/addon-dev'];
       delete contents.devDependencies['@ember/library-tsconfig'];
-      delete contents.devDependencies['rollup'];
+      delete contents.devDependencies['rolldown'];
 
       contents.scripts['lint:publish'] = 'publint run --level error';
-    }
-
-    if (locals.npm) {
-      /**
-       * @rollup/plugin-babel has the peer `@babel/core ^7`.
-       * pnpm only warns, but npm fails to install.
-       */
-      contents.overrides = {
-        '@rollup/plugin-babel': { '@babel/core': '$@babel/core' },
-      };
     }
 
     let sorted = sortPackageJson(contents);

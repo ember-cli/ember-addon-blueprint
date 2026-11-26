@@ -155,7 +155,13 @@ for (let packageManager of SUPPORTED_PACKAGE_MANAGERS) {
 
         let contents = await dirContents(join(addonDir, 'dist'));
 
-        expect(contents).to.deep.equal(['_app_', 'components', 'index.js', 'index.js.map']);
+        expect(contents).to.deep.equal(['_app_', 'components', 'index.js']);
+
+        expect((await dirContents(join(addonDir, 'dist/components'))).sort()).to.deep.equal([
+          'template-import.css',
+          'template-import.js',
+          'template-import.js.map',
+        ]);
       });
 
       it('test', async () => {

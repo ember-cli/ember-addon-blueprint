@@ -1,6 +1,8 @@
 import Component from '@glimmer/component';
 import { on } from '@ember/modifier';
 
+import './template-import.css';
+
 export default class TemplateImport extends Component {
   <template>
     Hello from a GJS file

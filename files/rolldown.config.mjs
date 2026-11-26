@@ -1,4 +1,4 @@
-import { babel } from '@rollup/plugin-babel';
+import babel from '@rolldown/plugin-babel';
 import { Addon } from '@embroider/addon-dev/rollup';
 import { fileURLToPath } from 'node:url';
 import { resolve, dirname } from 'node:path';
@@ -13,6 +13,10 @@ const babelConfig = resolve(rootDirectory, './babel.publish.config.cjs');<% if (
 const tsConfig = resolve(rootDirectory, './tsconfig.publish.json');<% } %>
 
 export default {
+  // Lets addon.keepAssets() below turn .css imports into kept assets,
+  // instead of rolldown trying to bundle them.
+  moduleTypes: { '.css': 'js' },
+
   // This provides defaults that work well alongside `publicEntrypoints` below.
   // You can augment this if you need to.
   output: addon.output(),
@@ -46,12 +50,10 @@ export default {
     // It exists only to provide development niceties for you, like automatic
     // template colocation.
     //
-    // By default, this will load the actual babel config from the file
-    // babel.config.json.
+    // The babel config itself is in babel.publish.config.cjs.
     babel({
-      extensions: ['.js', '.gjs'<% if (typescript) { %>, '.ts', '.gts'<% } %>],
-      babelHelpers: 'bundled',
-      configFile: babelConfig,
+      presets: [babelConfig],
+      include: /\.(js|gjs<% if (typescript) { %>|ts|gts<% } %>)$/,
     }),
 
     // Ensure that standalone .hbs files are properly integrated as Javascript.
@@ -68,7 +70,7 @@ export default {
                    { %>`npx @glint/ember-tsc -- --declaration --project ${tsConfig}`,<% } %>
     ),<% } %>
 
-    // addons are allowed to contain imports of .css files, which we want rollup
+    // addons are allowed to contain imports of .css files, which we want rolldown
     // to leave alone and keep in the published output.
     addon.keepAssets(['**/*.css']),
 
