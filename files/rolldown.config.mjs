@@ -52,7 +52,7 @@ export default {
     //
     // The babel config itself is in babel.publish.config.cjs.
     babel({
-      extends: babelConfig,
+      presets: [babelConfig],
       include: /\.(js|gjs<% if (typescript) { %>|ts|gts<% } %>)$/,
     }),
 
