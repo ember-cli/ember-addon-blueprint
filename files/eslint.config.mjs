@@ -16,6 +16,7 @@ import babelParser from '@babel/eslint-parser';
 import js from '@eslint/js';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import prettier from 'eslint-config-prettier';
+import emberTemplateLintMigration from 'eslint-plugin-ember/configs/template-lint-migration';
 import ember from 'eslint-plugin-ember/recommended';
 import { importX } from 'eslint-plugin-import-x';
 import n from 'eslint-plugin-n';
@@ -39,6 +40,7 @@ export default defineConfig([
   ember.configs.base,
   ember.configs.gjs,<% if (typescript) { %>
   ember.configs.gts,<% } %>
+  ...emberTemplateLintMigration,
   /**
    * https://eslint.org/docs/latest/use/configure/configuration-files#configuring-linter-options
    */
