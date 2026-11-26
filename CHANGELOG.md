@@ -1,5 +1,20 @@
 # Changelog
 
+## Release (2026-11-26)
+
+* @ember/addon-blueprint 0.21.0 (minor)
+
+#### :rocket: Enhancement
+* `@ember/addon-blueprint`
+  * [#166](https://github.com/ember-cli/ember-addon-blueprint/pull/166) Proposal: lint templates with eslint-plugin-ember instead of ember-template-lint ([@aklkv](https://github.com/aklkv))
+
+#### :bug: Bug Fix
+* `@ember/addon-blueprint`
+  * [#165](https://github.com/ember-cli/ember-addon-blueprint/pull/165) Drop transform-typescript options that Babel 8 removed ([@aklkv](https://github.com/aklkv))
+
+#### Committers: 1
+- Alexey Kulakov ([@aklkv](https://github.com/aklkv))
+
 ## Release (2026-11-24)
 
 * @ember/addon-blueprint 0.20.0 (minor)

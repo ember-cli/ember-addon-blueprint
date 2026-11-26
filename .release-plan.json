@@ -2,17 +2,21 @@
   "solution": {
     "@ember/addon-blueprint": {
       "impact": "minor",
-      "oldVersion": "0.19.0",
-      "newVersion": "0.20.0",
+      "oldVersion": "0.20.0",
+      "newVersion": "0.21.0",
       "tagName": "latest",
       "constraints": [
         {
           "impact": "minor",
           "reason": "Appears in changelog section :rocket: Enhancement"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :bug: Bug Fix"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2026-11-24)\n\n* @ember/addon-blueprint 0.20.0 (minor)\n\n#### :rocket: Enhancement\n* `@ember/addon-blueprint`\n  * [#163](https://github.com/ember-cli/ember-addon-blueprint/pull/163) Use Babel 8 and ESLint 10 in the generated addon ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n\n#### Committers: 1\n- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n"
+  "description": "## Release (2026-11-26)\n\n* @ember/addon-blueprint 0.21.0 (minor)\n\n#### :rocket: Enhancement\n* `@ember/addon-blueprint`\n  * [#166](https://github.com/ember-cli/ember-addon-blueprint/pull/166) Proposal: lint templates with eslint-plugin-ember instead of ember-template-lint ([@aklkv](https://github.com/aklkv))\n\n#### :bug: Bug Fix\n* `@ember/addon-blueprint`\n  * [#165](https://github.com/ember-cli/ember-addon-blueprint/pull/165) Drop transform-typescript options that Babel 8 removed ([@aklkv](https://github.com/aklkv))\n\n#### Committers: 1\n- Alexey Kulakov ([@aklkv](https://github.com/aklkv))\n"
 }
