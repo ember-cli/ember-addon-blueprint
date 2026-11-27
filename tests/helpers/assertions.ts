@@ -43,6 +43,10 @@ export async function assertGeneratedCorrectly({
     addonPackageJson.scripts['lint:js'],
     'eslint only caches without type-aware rules',
   ).toEqual(typeScript ? 'eslint .' : 'eslint . --cache');
+  expect(
+    addonPackageJson.sideEffects,
+    'only stylesheets and test modules run code on import',
+  ).toEqual(['**/*.css', './tests/**']);
 
   for (let expectedFile of expectedStaticFiles) {
     let pathToFile = path.join(addonPath, expectedFile);
